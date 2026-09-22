@@ -1,0 +1,408 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Pomodoro Pro — مؤقت البومودورو الاحترافي | ركّز، أنجز، تفوّق</title>
+<meta name="description" content="Pomodoro Pro — مؤقت بومودورو احترافي مجاني: مشاريع، مهام، إحصائيات، وضع ليلي، أصوات محيطية، تنبيهات، نسخ احتياطي، PWA وأندرويد. عربي وإنجليزي.">
+<meta name="keywords" content="بومودورو, مؤقت بومودورو, pomodoro timer, pomodoro pro, تطبيق تركيز, إدارة الوقت, تقنية بومودورو, زيادة الإنتاجية, تنظيم المهام, تتبع الوقت, focus timer, productivity app, time management, task manager, project tracking, statistics charts, dark mode, ambient sounds, PWA, android pomodoro, مذاكرة, عمل حر, برمجة, طلاب, ثانوية عامة, قدرات, تحصيلي">
+<meta name="theme-color" content="#0E1020">
+<meta property="og:title" content="Pomodoro Pro — ركّز 25 دقيقة وغيّر يومك">
+<meta property="og:description" content="مؤقت بومودورو مجاني بالعربية والإنجليزية: مشاريع، مهام، إحصائيات، أصوات مطر وغابة، وضع ليلي، يعمل أوفلاين.">
+<meta property="og:type" content="website">
+<meta property="og:image" content="images/logo.png">
+<link rel="icon" type="image/png" href="images/favicon.png">
+<link rel="apple-touch-icon" href="images/logo.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"SoftwareApplication","name":"Pomodoro Pro","applicationCategory":"ProductivityApplication","operatingSystem":"Web, Android, iOS","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"inLanguage":["ar","en"],"description":"مؤقت بومودورو احترافي: مشاريع ومهام وإحصائيات ووضع ليلي وأصوات محيطية.","downloadUrl":["https://amr-2155.github.io/pomodoro-pro/","https://github.com/amr-2155/pomodoro-pro/releases"]}
+</script>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[
+{"@type":"Question","name":"هل التطبيق مجاني؟","acceptedAnswer":{"@type":"Answer","text":"نعم، Pomodoro Pro مجاني بالكامل ومفتوح المصدر (MIT) بدون إعلانات وبدون حساب."}},
+{"@type":"Question","name":"هل يدعم العربية؟","acceptedAnswer":{"@type":"Answer","text":"نعم، يدعم العربية (RTL بخط Cairo) والإنجليزية مع تبديل فوري للاتجاه."}},
+{"@type":"Question","name":"هل يعمل بدون إنترنت؟","acceptedAnswer":{"@type":"Answer","text":"نعم، نسخة الويب PWA تعمل أوفلاين بعد أول تحميل، وكل بياناتك محفوظة محلياً."}},
+{"@type":"Question","name":"كيف أثبّته على الأندرويد؟","acceptedAnswer":{"@type":"Answer","text":"حمّل APK من صفحة Releases على GitHub وفعّل التثبيت من مصادر غير معروفة، أو استخدم نسخة الويب."}},
+{"@type":"Question","name":"هل التنبيه يعمل لو قفلت التطبيق؟","acceptedAnswer":{"@type":"Answer","text":"نعم على أندرويد يوجد مؤقت خلفية دقيق مع إشعار يشتغل حتى لو التطبيق مقفول."}},
+{"@type":"Question","name":"هل بياناتي آمنة؟","acceptedAnswer":{"@type":"Answer","text":"بياناتك محلية 100% على جهازك (Hive) ولا تُرسل لأي سيرفر. ويمكنك تصدير نسخة JSON أو CSV."}},
+{"@type":"Question","name":"ما هي مدد الجلسات؟","acceptedAnswer":{"@type":"Answer","text":"الوضع الافتراضي: تركيز 25 دقيقة، راحة قصيرة 5 دقائق، راحة طويلة 15-30 دقيقة — وكلها قابلة للتخصيص مع هدف يومي وفاصل الراحة الطويلة."}},
+{"@type":"Question","name":"هل يوجد إحصائيات؟","acceptedAnswer":{"@type":"Answer","text":"نعم: رسوم يومية وأسبوعية وشهرية، بداية أسبوع قابلة للضبط، وتقدّم لكل مشروع ومهمة."}},
+{"@type":"Question","name":"ما هي الأصوات المحيطية؟","acceptedAnswer":{"@type":"Answer","text":"مطر، غابة، محيط، مقهى، ضوضاء بيضاء — على نسخة الويب مع صوت تكتكة وجرس انتهاء."}},
+{"@type":"Question","name":"هل يعمل على الآيفون؟","acceptedAnswer":{"@type":"Answer","text":"نسخة الويب PWA قابلة للتثبيت على iOS من سفاري (مشاركة > إضافة للشاشة الرئيسية) وتعمل بكامل المزايا."}}
+]}
+</script>
+<style>
+:root{
+  --primary:#6C63FF; --primary-light:#8B83FF; --primary-dark:#4E4BC8;
+  --accent:#FF6584; --success:#34A853; --warning:#FF9800; --error:#E5523F; --info:#00BCD4;
+  --bg-dark:#0E1020; --surface-dark:#1A1D3A; --bg-light:#F4F5F9; --surface:#fff;
+  --text:#1F2430; --muted:#8A93A6; --border:#E4E7EF; --navy:#0E1020; --gold:var(--primary-light);
+  --radius:18px;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{font-family:'Cairo',sans-serif;background:var(--bg-light);color:var(--text);overflow-x:hidden;line-height:1.8}
+/* NAV */
+.nav{position:fixed;top:0;right:0;left:0;z-index:100;display:flex;align-items:center;justify-content:space-between;padding:1rem 4vw;transition:.35s;background:transparent}
+.nav-logo{display:flex;align-items:center;gap:.6rem;color:#fff;font-weight:900;font-size:1.25rem;text-decoration:none;text-shadow:0 2px 20px rgba(0,0,0,.4)}
+.nav-logo img{width:40px;height:40px;border-radius:12px;box-shadow:0 4px 18px rgba(108,99,255,.5)}
+.nav-logo span{color:var(--primary-light)}
+.nav-links{display:flex;gap:1.6rem;align-items:center}
+.nav-links a{color:rgba(255,255,255,.85);text-decoration:none;font-weight:700;font-size:.95rem;transition:.25s}
+.nav-links a:hover{color:#fff}
+.nav-cta{background:linear-gradient(135deg,var(--primary),var(--primary-dark));color:#fff!important;padding:.55rem 1.4rem;border-radius:100px;box-shadow:0 8px 24px rgba(108,99,255,.45)}
+.nav.scrolled{background:rgba(255,255,255,.92);backdrop-filter:blur(14px);box-shadow:0 6px 30px rgba(14,16,32,.1)}
+.nav.scrolled .nav-links a{color:var(--navy)}
+.nav.scrolled .nav-logo{color:var(--navy);text-shadow:none}
+.nav.scrolled .nav-logo span,.nav.scrolled .nav-logo em{color:var(--primary)}
+.nav.scrolled .mobile-toggle span{background:var(--navy)}
+.mobile-toggle{display:none;flex-direction:column;gap:5px;background:none;border:0;cursor:pointer;z-index:101}
+.mobile-toggle span{width:26px;height:3px;background:#fff;border-radius:3px;transition:.3s}
+/* HERO */
+.hero{min-height:100vh;background:radial-gradient(1000px 500px at 80% -5%,rgba(108,99,255,.45),transparent),radial-gradient(800px 500px at 10% 110%,rgba(255,101,132,.28),transparent),linear-gradient(180deg,#141736,#0E1020 70%);color:#fff;display:grid;grid-template-columns:1.05fr .95fr;gap:3rem;align-items:center;padding:7.5rem 5vw 4rem;position:relative;overflow:hidden}
+.hero::before{content:'';position:absolute;inset:0;background:url('images/logo.png') no-repeat -120px 110%/420px;opacity:.05;filter:grayscale(1)}
+.hero-badge{display:inline-flex;align-items:center;gap:.5rem;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.16);padding:.4rem 1rem;border-radius:100px;font-size:.85rem;font-weight:700;color:#D9D7FF;backdrop-filter:blur(8px)}
+.hero h1{font-size:clamp(2rem,4.6vw,3.6rem);font-weight:900;line-height:1.35;margin:1.2rem 0}
+.hero h1 .grad{background:linear-gradient(90deg,#A79FFF,#FF6584);-webkit-background-clip:text;background-clip:text;color:transparent}
+.hero p.sub{color:#B9BDD6;font-size:1.1rem;max-width:34rem}
+.hero-btns{display:flex;gap:1rem;margin-top:1.8rem;flex-wrap:wrap}
+.btn{display:inline-flex;align-items:center;gap:.6rem;padding:.9rem 2rem;border-radius:100px;font-weight:800;font-size:1rem;text-decoration:none;transition:.3s;border:0;cursor:pointer}
+.btn-primary{background:linear-gradient(135deg,var(--primary),var(--primary-dark));color:#fff;box-shadow:0 12px 32px rgba(108,99,255,.5)}
+.btn-primary:hover{transform:translateY(-3px);box-shadow:0 18px 44px rgba(108,99,255,.6)}
+.btn-ghost{background:rgba(255,255,255,.08);color:#fff;border:1px solid rgba(255,255,255,.2)}
+.btn-ghost:hover{background:rgba(255,255,255,.16);transform:translateY(-3px)}
+.hero-stats{display:flex;gap:2.5rem;margin-top:2.2rem;padding-top:1.6rem;border-top:1px solid rgba(255,255,255,.12)}
+.hero-stat-num{font-size:1.9rem;font-weight:900;color:#fff}
+.hero-stat-label{font-size:.8rem;color:#9AA2B8;letter-spacing:.3px}
+/* phone mockup */
+.phone-wrap{display:flex;justify-content:center;perspective:1200px}
+.phone{width:min(300px,78vw);aspect-ratio:9/19;background:#0B0D1F;border-radius:44px;border:1px solid rgba(255,255,255,.18);box-shadow:0 40px 100px rgba(0,0,0,.6),0 0 0 10px #1c1f3d,0 0 80px rgba(108,99,255,.35);padding:1.2rem;position:relative;transform:rotateY(-10deg) rotateX(4deg)}
+.timer-ring{width:200px;height:200px;margin:1.4rem auto;border-radius:50%;background:conic-gradient(var(--primary) 0 72%,rgba(255,255,255,.1) 72% 100%);display:grid;place-items:center;animation:spinGlow 6s ease-in-out infinite alternate}
+.timer-inner{width:164px;height:164px;border-radius:50%;background:#141736;display:grid;place-items:center;text-align:center}
+.timer-inner b{font-size:2rem;color:#fff}
+.timer-inner small{color:#9AA2B8}
+@keyframes spinGlow{from{box-shadow:0 0 30px rgba(108,99,255,.35)}to{box-shadow:0 0 70px rgba(108,99,255,.7)}}
+.chip-row{display:flex;gap:.5rem;justify-content:center;margin:.8rem 0}
+.chip{font-size:.75rem;font-weight:800;padding:.3rem .9rem;border-radius:100px;background:rgba(255,255,255,.08);color:#C9CCEA}
+.chip.on{background:linear-gradient(135deg,var(--primary),var(--accent));color:#fff}
+.mock-bar{height:12px;border-radius:8px;background:rgba(255,255,255,.09);margin:.55rem .4rem}
+.mock-bar.short{width:60%}
+/* sections */
+section{padding:5rem 5vw}
+.sec-tag{display:inline-block;font-weight:900;color:var(--primary);background:rgba(108,99,255,.1);padding:.3rem 1.1rem;border-radius:100px;font-size:.85rem;margin-bottom:.8rem}
+.sec-title{font-size:clamp(1.5rem,3vw,2.4rem);font-weight:900;margin-bottom:.6rem}
+.sec-sub{color:var(--muted);max-width:44rem;margin-bottom:2.4rem}
+/* services grid */
+.services-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1.2rem}
+.service-card{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:1.6rem 1.3rem;transition:.35s;position:relative;overflow:hidden}
+.service-card::after{content:'';position:absolute;top:0;right:0;left:0;height:4px;background:linear-gradient(90deg,var(--primary),var(--accent));opacity:0;transition:.35s}
+.service-card:hover{transform:translateY(-8px);box-shadow:0 24px 50px rgba(108,99,255,.16)}
+.service-card:hover::after{opacity:1}
+.service-card .ico{font-size:2rem}
+.service-card h3{margin:.6rem 0 .3rem;font-size:1.05rem}
+.service-card p{color:var(--muted);font-size:.92rem}
+/* modes navy */
+.modes{background:linear-gradient(180deg,#141736,#0E1020);color:#fff}
+.modes .sec-sub{color:#9AA2B8}
+.season-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1.2rem}
+.season-card{background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.12);border-radius:var(--radius);padding:1.6rem;backdrop-filter:blur(8px);transition:.35s}
+.season-card:hover{transform:translateY(-6px);background:rgba(255,255,255,.09)}
+.season-card h3{margin-bottom:.4rem}
+.season-card p{color:#B9BDD6;font-size:.92rem}
+.pill{display:inline-block;font-size:.72rem;font-weight:800;padding:.15rem .8rem;border-radius:100px;margin-top:.7rem}
+/* showcase */
+.facility-grid{display:grid;grid-template-columns:1fr 1fr;gap:3rem;align-items:center}
+.spec-grid{display:grid;grid-template-columns:1fr 1fr;gap:.9rem;margin-top:1.4rem}
+.spec{background:var(--surface);border:1px solid var(--border);border-radius:14px;padding:1rem 1.1rem}
+.spec b{display:block}
+.spec small{color:var(--muted)}
+.feat-list{list-style:none;margin-top:1.2rem;display:grid;gap:.55rem}
+.feat-list li::before{content:'✓ ';color:var(--success);font-weight:900}
+/* pricing */
+.pricing-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.2rem}
+.price-card{background:var(--surface);border:2px solid var(--border);border-radius:22px;padding:2rem 1.6rem;text-align:center;transition:.35s;position:relative}
+.price-card.hot{border-color:var(--primary);box-shadow:0 24px 60px rgba(108,99,255,.22);transform:scale(1.03)}
+.price-card:hover{transform:translateY(-6px)}
+.price-card .amount{font-size:2.2rem;font-weight:900;color:var(--primary-dark)}
+.price-card ul{list-style:none;margin:1.2rem 0;display:grid;gap:.5rem;color:#4A5268;font-size:.94rem}
+/* gallery */
+.gallery-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1rem}
+.g-card{border-radius:16px;padding:1.8rem 1.2rem;color:#fff;min-height:170px;display:flex;flex-direction:column;justify-content:flex-end;transition:.35s;cursor:pointer}
+.g-card:hover{transform:scale(1.03)}
+.g-card small{opacity:.85}
+/* testimonials */
+.testi-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.2rem}
+.testi{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:1.6rem}
+.stars{color:#FFB300;letter-spacing:2px}
+/* prepare navy */
+.prepare{background:linear-gradient(180deg,#0E1020,#1A1D3A);color:#fff}
+.prepare-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.2rem}
+.prepare-card{background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.12);border-radius:var(--radius);padding:1.6rem}
+.prepare-card ul{list-style:none;margin-top:.8rem;display:grid;gap:.5rem;color:#C9CCEA;font-size:.93rem}
+/* use cases */
+.area-cities{display:grid;grid-template-columns:repeat(4,1fr);gap:1.2rem}
+.area-city{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:1.5rem;transition:.3s}
+.area-city:hover{transform:translateY(-6px);box-shadow:0 18px 40px rgba(14,16,32,.1)}
+.area-city .time{font-size:.78rem;font-weight:800;color:var(--primary)}
+/* faq */
+.faq-list{max-width:56rem;margin:0 auto;display:grid;gap:.8rem}
+.faq-item{background:var(--surface);border:1px solid var(--border);border-radius:14px;overflow:hidden}
+.faq-q{width:100%;background:none;border:0;font-family:inherit;font-weight:800;font-size:1rem;padding:1.1rem 1.4rem;display:flex;justify-content:space-between;align-items:center;cursor:pointer;color:var(--text)}
+.faq-a{max-height:0;overflow:hidden;transition:max-height .4s ease;color:#4A5268;padding:0 1.4rem}
+.faq-item.open .faq-a{max-height:300px;padding-bottom:1.2rem}
+/* cta */
+.cta-banner{background:linear-gradient(135deg,#6C63FF,#4E4BC8 55%,#FF6584 130%);border-radius:28px;color:#fff;padding:3.5rem 2rem;text-align:center;position:relative;overflow:hidden}
+.cta-banner::before{content:'🍅';position:absolute;font-size:12rem;opacity:.12;left:-2rem;top:-2rem;transform:rotate(-15deg)}
+/* contact */
+.contact-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.2rem}
+.contact-card{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:1.6rem;text-align:center;text-decoration:none;color:var(--text);transition:.3s}
+.contact-card:hover{transform:translateY(-6px);box-shadow:0 18px 40px rgba(108,99,255,.15)}
+footer{background:#0B0D1F;color:#9AA2B8;padding:2.5rem 5vw;text-align:center}
+footer a{color:#C9CCEA;text-decoration:none;margin:0 .6rem}
+/* reveal */
+.reveal{opacity:0;transform:translateY(36px)}
+form.news{display:flex;gap:.6rem;max-width:30rem;margin:1.4rem auto 0}
+form.news input{flex:1;padding:.9rem 1.2rem;border-radius:100px;border:1px solid rgba(255,255,255,.25);background:rgba(255,255,255,.1);color:#fff;font-family:inherit}
+form.news input::placeholder{color:#C9CCEA}
+@media (max-width:1024px){.services-grid,.season-grid,.gallery-grid,.area-cities{grid-template-columns:repeat(2,1fr)}.hero{grid-template-columns:1fr;text-align:center}.hero p.sub{margin:0 auto}.hero-btns,.hero-stats{justify-content:center}.phone{transform:none}.facility-grid{grid-template-columns:1fr}.pricing-grid,.testi-grid,.prepare-grid,.contact-grid{grid-template-columns:1fr}.nav-links{display:none}.nav-links.open{display:flex;position:fixed;inset:0;background:#0E1020;flex-direction:column;justify-content:center;font-size:1.4rem}.nav-links.open a{color:#fff}.mobile-toggle{display:flex}}
+@media (max-width:768px){
+.hero h1{margin-bottom:1rem}
+.hero-stats{gap:1.5rem;flex-wrap:wrap;justify-content:center;margin-top:2rem;padding-top:1.5rem}
+.hero-stat-num{font-size:1.5rem}
+.hero-stat-label{font-size:.65rem;letter-spacing:.5px}
+.services-grid,.season-grid,.gallery-grid,.area-cities{grid-template-columns:1fr}
+section{padding:3.2rem 5vw}
+}
+</style>
+</head>
+<body>
+
+<nav class="nav" id="nav">
+  <a class="nav-logo" href="#top"><img src="images/logo.png" alt="Pomodoro Pro logo"> Pomodoro <span>Pro</span></a>
+  <div class="nav-links" id="navLinks">
+    <a href="#features">المزايا</a><a href="#modes">الأوضاع</a><a href="#download">تحميل</a><a href="#faq">الأسئلة</a>
+    <a class="nav-cta" href="https://amr-2155.github.io/pomodoro-pro/" target="_blank" rel="noopener">جرّب الآن مجاناً</a>
+  </div>
+  <button class="mobile-toggle" id="menuBtn" aria-label="القائمة"><span></span><span></span><span></span></button>
+</nav>
+
+<header class="hero" id="top">
+  <div>
+    <span class="hero-badge">🍅 مجاني 100% • عربي + English • بدون حساب</span>
+    <h1>ركّز <span class="grad">25 دقيقة</span>…<br>وأنجز أكثر من يوم كامل</h1>
+    <p class="sub">Pomodoro Pro مؤقت البومودورو الاحترافي: مشاريع، مهام، إحصائيات، أصوات مطر وغابة، وضع ليلي، تنبيهات خلفية — يعمل على الويب والأندرويد حتى بدون إنترنت.</p>
+    <div class="hero-btns">
+      <a class="btn btn-primary" href="https://amr-2155.github.io/pomodoro-pro/" target="_blank" rel="noopener">🚀 ابدأ التركيز الآن</a>
+      <a class="btn btn-ghost" href="https://github.com/amr-2155/pomodoro-pro/releases" target="_blank" rel="noopener">📲 تحميل APK للأندرويد</a>
+    </div>
+    <div class="hero-stats">
+      <div><div class="hero-stat-num" data-count="25">25</div><div class="hero-stat-label">دقيقة جلسة التركيز</div></div>
+      <div><div class="hero-stat-num"><span data-count="10">10</span>+</div><div class="hero-stat-label">شاشات وميزة</div></div>
+      <div><div class="hero-stat-num"><span data-count="2">2</span> لغات</div><div class="hero-stat-label">عربي + إنجليزي RTL</div></div>
+      <div><div class="hero-stat-num">0$</div><div class="hero-stat-label">مجاني ومفتوح المصدر</div></div>
+    </div>
+  </div>
+  <div class="phone-wrap">
+    <div class="phone" id="phoneTilt">
+      <div class="chip-row"><span class="chip on">تركيز</span><span class="chip">راحة قصيرة</span><span class="chip">طويلة</span></div>
+      <div class="timer-ring"><div class="timer-inner"><div><b>24:59</b><br><small>مشروع: تخرّج 🎯</small></div></div></div>
+      <div class="chip-row"><span class="chip">▶ ابدأ</span><span class="chip">⏸ إيقاف</span><span class="chip">⏭ تخطي</span></div>
+      <div class="mock-bar"></div><div class="mock-bar short"></div><div class="mock-bar"></div>
+    </div>
+  </div>
+</header>
+
+<section id="features">
+  <span class="sec-tag">⚡ المزايا</span>
+  <h2 class="sec-title reveal">كل ما تحتاجه للإنتاجية في تطبيق واحد</h2>
+  <p class="sec-sub reveal">مبني بـ Flutter — سريع، خفيف، ويعمل على الويب (PWA) والأندرويد وiOS من كود واحد. بياناتك محلية 100%.</p>
+  <div class="services-grid">
+    <div class="service-card reveal"><div class="ico">⏱️</div><h3>مؤقت بومودورو مرن</h3><p>تركيز / راحة قصيرة / راحة طويلة + ستوب ووتش، مدد قابلة للتخصيص واختصارات كيبورد.</p></div>
+    <div class="service-card reveal"><div class="ico">📁</div><h3>مشاريع ملوّنة</h3><p>نظّم جلساتك لكل مشروع بأيقونات وألوان، وتابع التقدّم لكل مشروع على حدة.</p></div>
+    <div class="service-card reveal"><div class="ico">✅</div><h3>مهام وبومودورو متوقع</h3><p>قائمة مهام بعدد البومودورو المقدّر والمنجز لكل مهمة مع حفظ تلقائي.</p></div>
+    <div class="service-card reveal"><div class="ico">📊</div><h3>إحصائيات ذكية</h3><p>رسوم يومية وأسبوعية وشهرية (fl_chart) وهدف يومي وفاصل راحة طويلة قابل للضبط.</p></div>
+    <div class="service-card reveal"><div class="ico">🌙</div><h3>وضع ليلي فاخر</h3><p>ثيم داكن #0E1020 مريح للعين + فاتح نهاري، يتبع النظام أو يدوي.</p></div>
+    <div class="service-card reveal"><div class="ico">🌧️</div><h3>أصوات محيطية</h3><p>مطر، غابة، محيط، مقهى، ضوضاء بيضاء + تكتكة وجرس انتهاء حقيقي.</p></div>
+    <div class="service-card reveal"><div class="ico">🔕</div><h3>يعمل في الخلفية</h3><p>على أندرويد: إشعار دقيق يشتغل حتى لو قفلت التطبيق + تنبيهات ويب.</p></div>
+    <div class="service-card reveal"><div class="ico">💾</div><h3>نسخ + CSV + PWA</h3><p>تصدير JSON واستيراد، تصدير CSV للجلسات والمهام، وتثبيت كتطبيق يعمل أوفلاين.</p></div>
+  </div>
+</section>
+
+<section class="modes" id="modes">
+  <span class="sec-tag">🔄 الأوضاع الأربعة</span>
+  <h2 class="sec-title reveal">إيقاع عمل يناسب عقلك</h2>
+  <p class="sec-sub reveal">دورة البومودورو الكلاسيكية مضبوطة علمياً للحفاظ على التركيز العميق بدون احتراق.</p>
+  <div class="season-grid">
+    <div class="season-card reveal"><h3>🎯 تركيز — 25 دقيقة</h3><p>جلسة عمل عميق واحدة بدون مشتتات مع شاشة انغماس كاملة ومؤقت دائري.</p><span class="pill" style="background:#6C63FF;color:#fff">الأكثر استخداماً</span></div>
+    <div class="season-card reveal"><h3>☕ راحة قصيرة — 5 دقائق</h3><p>استراحة خفيفة بين الجلسات: ماء، تمدد، نظرة بعيدة. يعود عقلك أنشط.</p><span class="pill" style="background:#34A853;color:#fff">استشفاء سريع</span></div>
+    <div class="season-card reveal"><h3>🌴 راحة طويلة — 15~30 دقيقة</h3><p>بعد كل 4 جلسات (قابل للضبط) خذ راحة عميقة: مشي، أكل، قيلولة خفيفة.</p><span class="pill" style="background:#FF9800;color:#fff">كل 4 جلسات</span></div>
+    <div class="season-card reveal"><h3>⏱️ ستوب ووتش حر</h3><p>وضع تصاعدي مفتوح للمهام الإبداعية مع إمكانية حفظ الجلسة أو إسقاطها.</p><span class="pill" style="background:#00BCD4;color:#fff">مرونة كاملة</span></div>
+  </div>
+</section>
+
+<section id="showcase">
+  <div class="facility-grid">
+    <div class="reveal">
+      <span class="sec-tag">📱 داخل التطبيق</span>
+      <h2 class="sec-title">10 شاشات مصممة للإنجاز</h2>
+      <p class="sec-sub">تايمر، مشاريع، تفاصيل مشروع، مهام، إحصائيات، سجل الجلسات، مكتبة اقتباسات، شاشة تركيز غامرة، وإعدادات شاملة — كلها بخط Cairo الأنيق.</p>
+      <div class="spec-grid">
+        <div class="spec"><b>🎯 الهدف اليومي</b><small>افتراضي 8 جلسات قابل للتخصيص</small></div>
+        <div class="spec"><b>⌨️ اختصارات</b><small>Space تشغيل • R إعادة • S تخطي</small></div>
+        <div class="spec"><b>🔊 صوت حقيقي</b><small>audioplayers + Web Audio API</small></div>
+        <div class="spec"><b>🗄️ تخزين Hive</b><small>سريع ومحلي بدون سيرفر</small></div>
+      </div>
+      <ul class="feat-list">
+        <li>ضغطة مطوّلة على الدائرة لتغيير المدة</li>
+        <li>احتفال Completion Overlay عند إنهاء الجلسة</li>
+        <li>مكتبة اقتباسات تحفيزية عربية وإنجليزية</li>
+        <li>وضع التسبيح والدعم الكامل للـ RTL</li>
+      </ul>
+    </div>
+    <div class="reveal">
+      <div class="phone" style="transform:none;margin:0 auto">
+        <div class="timer-ring" style="background:conic-gradient(#34A853 0 45%,rgba(255,255,255,.1) 45% 100%)"><div class="timer-inner"><div><b>12:40</b><br><small>إحصائيات الأسبوع 📊</small></div></div></div>
+        <div class="mock-bar"></div><div class="mock-bar short"></div><div class="mock-bar"></div><div class="mock-bar short"></div>
+        <div class="chip-row"><span class="chip on">يومي</span><span class="chip">أسبوعي</span><span class="chip">شهري</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="download" style="background:#fff">
+  <span class="sec-tag">📥 التحميل</span>
+  <h2 class="sec-title reveal">اختر منصتك وابدأ مجاناً</h2>
+  <p class="sec-sub reveal">بدون حساب، بدون إعلانات، مفتوح المصدر برخصة MIT.</p>
+  <div class="pricing-grid">
+    <div class="price-card hot reveal"><h3>🌐 نسخة الويب PWA</h3><div class="amount">مجاناً</div><ul><li>✓ تعمل فوراً من المتصفح</li><li>✓ قابلة للتثبيت وتعمل أوفلاين</li><li>✓ أصوات محيطية + تنبيهات</li><li>✓ تحديثات تلقائية</li></ul><a class="btn btn-primary" href="https://amr-2155.github.io/pomodoro-pro/" target="_blank" rel="noopener">افتح التطبيق</a></div>
+    <div class="price-card reveal"><h3>🤖 أندرويد APK</h3><div class="amount">مجاناً</div><ul><li>✓ مؤقت خلفية دقيق</li><li>✓ إشعارات حتى لو مقفول</li><li>✓ أصوات حقيقية واهتزاز</li><li>✓ من صفحة Releases</li></ul><a class="btn btn-ghost" style="color:var(--primary-dark);border-color:var(--border)" href="https://github.com/amr-2155/pomodoro-pro/releases" target="_blank" rel="noopener">تحميل APK</a></div>
+    <div class="price-card reveal"><h3>🍎 آيفون / iOS</h3><div class="amount">مجاناً</div><ul><li>✓ عبر PWA من سفاري</li><li>✓ مشاركة ← إضافة للشاشة الرئيسية</li><li>✓ كامل المزايا الأساسية</li><li>✓ قريباً على App Store؟</li></ul><a class="btn btn-ghost" style="color:var(--primary-dark);border-color:var(--border)" href="https://amr-2155.github.io/pomodoro-pro/" target="_blank" rel="noopener">ثبّت من سفاري</a></div>
+  </div>
+</section>
+
+<section id="gallery">
+  <span class="sec-tag">🖼️ لمحات</span>
+  <h2 class="sec-title reveal">مصمم ليحببك في التركيز</h2>
+  <div class="gallery-grid">
+    <div class="g-card reveal" style="background:linear-gradient(135deg,#6C63FF,#4E4BC8)"><div><small>Timer</small><h3>دائرة تركيز متوهجة</h3></div></div>
+    <div class="g-card reveal" style="background:linear-gradient(135deg,#FF6584,#C81E5B)"><div><small>Projects</small><h3>مشاريع ملوّنة بأيقونات</h3></div></div>
+    <div class="g-card reveal" style="background:linear-gradient(135deg,#34A853,#1B6B32)"><div><small>Stats</small><h3>رسوم fl_chart تفاعلية</h3></div></div>
+    <div class="g-card reveal" style="background:linear-gradient(135deg,#FF9800,#B25A00)"><div><small>Tasks</small><h3>مهام بعدّاد بومودورو</h3></div></div>
+    <div class="g-card reveal" style="background:linear-gradient(135deg,#00BCD4,#006978)"><div><small>Ambient</small><h3>مطر وغابة ومقهى</h3></div></div>
+    <div class="g-card reveal" style="background:linear-gradient(135deg,#1A1D3A,#0E1020)"><div><small>Dark mode</small><h3>ليلي فاخر مريح</h3></div></div>
+    <div class="g-card reveal" style="background:linear-gradient(135deg,#9C27B0,#5E1180)"><div><small>Quotes</small><h3>اقتباسات تحفيزية</h3></div></div>
+    <div class="g-card reveal" style="background:linear-gradient(135deg,#3F51B5,#1A237E)"><div><small>Bilingual</small><h3>عربي RTL + English</h3></div></div>
+  </div>
+</section>
+
+<section id="testimonials" style="background:#fff">
+  <span class="sec-tag">⭐ آراء المستخدمين</span>
+  <h2 class="sec-title reveal">لماذا يعشق المنجزون Pomodoro Pro؟</h2>
+  <div class="testi-grid" style="margin-top:2rem">
+    <div class="testi reveal"><div class="stars">★★★★★</div><p>"أخيراً تطبيق بومودورو عربي محترم! الإحصائيات خلتني أشوف تقدمي في المذاكرة يوم بيوم."</p><b>— طالب ثانوية عامة</b></div>
+    <div class="testi reveal"><div class="stars">★★★★★</div><p>"الوضع الليلي والأصوات المحيطية مع التركيز العميق = ساعتين شغل متواصل بدون ما أحس."</p><b>— مطوّر فريلانسر</b></div>
+    <div class="testi reveal"><div class="stars">★★★★★</div><p>"خفيف، بدون حساب، وبياناتي على جهازي. صدّرت CSV لمديري في الشغل وانبهر."</p><b>— مصممة منتجات</b></div>
+  </div>
+</section>
+
+<section class="prepare" id="how">
+  <span class="sec-tag">📋 كيف تبدأ</span>
+  <h2 class="sec-title reveal">3 خطوات لأول جلسة عميقة</h2>
+  <div class="prepare-grid" style="margin-top:2rem">
+    <div class="prepare-card reveal"><h3>1️⃣ أنشئ مشروعك</h3><ul><li>✓ روح لتبويب المشاريع</li><li>✓ اختر أيقونة ولوناً</li><li>✓ حدد هدفك اليومي (8 جلسات)</li></ul></div>
+    <div class="prepare-card reveal"><h3>2️⃣ جهّز مهامك</h3><ul><li>✓ اكتب مهام اليوم</li><li>✓ قدّر البومودورو لكل مهمة</li><li>✓ اختر المشروع من التايمر</li></ul></div>
+    <div class="prepare-card reveal"><h3>3️⃣ ركّز 25 دقيقة</h3><ul><li>✓ اضغط ابدأ وادخل وضع الانغماس</li><li>✓ شغّل صوت المطر 🌧️</li><li>✓ احتفل عند الجرس 🎉</li></ul></div>
+  </div>
+</section>
+
+<section id="uses">
+  <span class="sec-tag">🎯 لمن هذا التطبيق؟</span>
+  <h2 class="sec-title reveal">مثالي لكل عقل منجز</h2>
+  <div class="area-cities" style="margin-top:2rem">
+    <div class="area-city reveal"><div class="time">STUDENTS • مذاكرة</div><h3>🎓 الطلاب</h3><p>قسّم المنهج لجلسات 25 دقيقة وتابع إنجازك بالرسوم. مثالي للثانوية والقدرات والجامعة.</p></div>
+    <div class="area-city reveal"><div class="time">DEVS • برمجة</div><h3>💻 المبرمجون</h3><p>جلسات تركيز عميق للكود مع ستوب ووتش للـ debugging الطويل وإحصائيات للمشاريع.</p></div>
+    <div class="area-city reveal"><div class="time">FREELANCE • عمل حر</div><h3>🚀 الفريلانسرز</h3><p>تتبع الوقت لكل عميل/مشروع وصدّر CSV للفواتير. بياناتك ملكك.</p></div>
+    <div class="area-city reveal"><div class="time">WRITERS • كتابة</div><h3>✍️ الكتّاب وصناع المحتوى</h3><p>تغلّب على التسويف بجلسات قصيرة وأصوات مقهى تحفّز الإبداع.</p></div>
+  </div>
+</section>
+
+<section id="faq" style="background:#fff">
+  <span class="sec-tag">❓ الأسئلة الشائعة</span>
+  <h2 class="sec-title reveal">كل ما تريد معرفته</h2>
+  <div class="faq-list" style="margin-top:2rem">
+    <div class="faq-item"><button class="faq-q">هل التطبيق مجاني فعلاً؟ <span>+</span></button><div class="faq-a"><p>نعم 100% ومفتوح المصدر برخصة MIT. لا إعلانات، لا اشتراكات، لا حساب مطلوب. حمّله من GitHub Pages أو Releases.</p></div></div>
+    <div class="faq-item"><button class="faq-q">هل يدعم اللغة العربية؟ <span>+</span></button><div class="faq-a"><p>نعم بالكامل: واجهة عربية RTL بخط Cairo الجميل مع دعم إنجليزي، وتبديل فوري من الإعدادات.</p></div></div>
+    <div class="faq-item"><button class="faq-q">هل يعمل بدون إنترنت؟ <span>+</span></button><div class="faq-a"><p>نعم. نسخة الويب PWA تعمل أوفلاين بعد أول زيارة، وتطبيقات الموبايل تعمل دائماً أوفلاين.</p></div></div>
+    <div class="faq-item"><button class="faq-q">كيف أثبّته على أندرويد؟ <span>+</span></button><div class="faq-a"><p>من صفحة Releases على GitHub حمّل أحدث APK وفعّل "التثبيت من مصادر غير معروفة" ثم ثبّت.</p></div></div>
+    <div class="faq-item"><button class="faq-q">هل التنبيه يعمل لو أغلقت التطبيق؟ <span>+</span></button><div class="faq-a"><p>على أندرويد نعم — مؤقت خلفية دقيق (foreground task + exact alarm) يرن حتى لو التطبيق مقفول. على الويب يلزم بقاء التبويب مفتوحاً.</p></div></div>
+    <div class="faq-item"><button class="faq-q">أين تُحفظ بياناتي؟ <span>+</span></button><div class="faq-a"><p>محلياً على جهازك بقاعدة Hive السريعة. لا سيرفرات ولا تتبع. ويمكنك عمل نسخة JSON احتياطية أو تصدير CSV.</p></div></div>
+    <div class="faq-item"><button class="faq-q">ما مدد الجلسات الافتراضية؟ <span>+</span></button><div class="faq-a"><p>تركيز 25 دقيقة، قصيرة 5، طويلة 15، كل 4 جلسات — وكلها قابلة للتخصيص مع هدف يومي (افتراضي 8).</p></div></div>
+    <div class="faq-item"><button class="faq-q">ما الأصوات المتاحة؟ <span>+</span></button><div class="faq-a"><p>مطر، غابة، محيط، مقهى، ضوضاء بيضاء على الويب، مع صوت تكتكة وجرس انتهاء وتنبيه اهتزاز.</p></div></div>
+    <div class="faq-item"><button class="faq-q">هل يعمل على الآيفون؟ <span>+</span></button><div class="faq-a"><p>نعم عبر PWA: افتح الرابط في سفاري ← مشاركة ← إضافة إلى الشاشة الرئيسية.</p></div></div>
+    <div class="faq-item"><button class="faq-q">كيف أبلّغ عن مشكلة أو أقترح ميزة؟ <span>+</span></button><div class="faq-a"><p>افتح Issue على GitHub: github.com/amr-2155/pomodoro-pro — المشروع نشط ويرحّب بالمساهمات.</p></div></div>
+  </div>
+</section>
+
+<section>
+  <div class="cta-banner reveal">
+    <h2 style="font-size:clamp(1.6rem,3.4vw,2.6rem);font-weight:900">جاهز تضاعف إنتاجيتك؟ 🍅</h2>
+    <p style="opacity:.9;margin:.6rem 0 1.6rem">انضم لآلاف المنجزين — أول جلسة تركيز تبعد عنك ضغطة واحدة.</p>
+    <div class="hero-btns" style="justify-content:center">
+      <a class="btn" style="background:#fff;color:#4E4BC8" href="https://amr-2155.github.io/pomodoro-pro/" target="_blank" rel="noopener">🚀 ابدأ مجاناً الآن</a>
+      <a class="btn btn-ghost" href="https://github.com/amr-2155/pomodoro-pro" target="_blank" rel="noopener">⭐ Star على GitHub</a>
+    </div>
+    <form class="news" name="newsletter" method="POST" data-netlify="true" netlify-honeypot="bot-field">
+      <input type="hidden" name="form-name" value="newsletter">
+      <p style="display:none"><input name="bot-field"></p>
+      <input type="email" name="email" placeholder="بريدك لنصائح الإنتاجية…" required>
+      <button class="btn" style="background:#0E1020;color:#fff" type="submit">اشترك</button>
+    </form>
+  </div>
+</section>
+
+<section id="contact" style="padding-top:0">
+  <div class="contact-grid">
+    <a class="contact-card reveal" href="https://amr-2155.github.io/pomodoro-pro/" target="_blank" rel="noopener"><div style="font-size:2rem">🌐</div><h3>التطبيق المباشر</h3><p style="color:var(--muted)">amr-2155.github.io/pomodoro-pro</p></a>
+    <a class="contact-card reveal" href="https://github.com/amr-2155/pomodoro-pro" target="_blank" rel="noopener"><div style="font-size:2rem">💻</div><h3>الكود المصدري</h3><p style="color:var(--muted)">github.com/amr-2155/pomodoro-pro</p></a>
+    <a class="contact-card reveal" href="https://github.com/amr-2155/pomodoro-pro/releases" target="_blank" rel="noopener"><div style="font-size:2rem">📲</div><h3>تحميل APK</h3><p style="color:var(--muted)">صفحة Releases الرسمية</p></a>
+  </div>
+</section>
+
+<footer>
+  <div><a href="#features">المزايا</a><a href="#download">تحميل</a><a href="#faq">الأسئلة</a><a href="https://github.com/amr-2155/pomodoro-pro" target="_blank" rel="noopener">GitHub</a></div>
+  <p style="margin-top:1rem">© 2026 Pomodoro Pro — MIT License • صُنع بـ Flutter 💜 • صفحة هبوط فاخرة بمحرك website-redesign skill</p>
+</footer>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+<script>
+const nav=document.getElementById('nav'),menuBtn=document.getElementById('menuBtn'),navLinks=document.getElementById('navLinks');
+addEventListener('scroll',()=>nav.classList.toggle('scrolled',scrollY>40),{passive:true});
+menuBtn.onclick=()=>navLinks.classList.toggle('open');
+navLinks.querySelectorAll('a').forEach(a=>a.onclick=()=>navLinks.classList.remove('open'));
+document.querySelectorAll('.faq-q').forEach(btn=>btn.onclick=()=>{
+  const item=btn.parentElement,was=item.classList.contains('open');
+  document.querySelectorAll('.faq-item').forEach(i=>{i.classList.remove('open');i.querySelector('span').textContent='+'});
+  if(!was){item.classList.add('open');btn.querySelector('span').textContent='−'}
+});
+gsap.registerPlugin(ScrollTrigger);
+gsap.utils.toArray('.reveal').forEach(el=>{
+  gsap.to(el,{opacity:1,y:0,duration:.9,ease:'power3.out',scrollTrigger:{trigger:el,start:'top 88%'}});
+});
+gsap.to('.hero h1',{y:-40,scrollTrigger:{trigger:'.hero',start:'top top',end:'bottom top',scrub:true}});
+gsap.to('#phoneTilt',{y:40,rotateY:-4,scrollTrigger:{trigger:'.hero',start:'top top',end:'bottom top',scrub:true}});
+document.querySelectorAll('[data-count]').forEach(el=>{
+  const target=+el.dataset.count;
+  ScrollTrigger.create({trigger:el,start:'top 92%',once:true,onEnter:()=>{
+    gsap.fromTo(el,{innerText:0},{innerText:target,duration:1.6,snap:{innerText:1},ease:'power2.out'});
+  }});
+});
+document.querySelector('form.news').addEventListener('submit',e=>{
+  if(!e.target.checkValidity())return;
+  if(location.protocol==='file:'){e.preventDefault();alert('شكراً لاشتراكك! 🎉 (تجريبي محلي)')}
+});
+</script>
+</body>
+</html>
