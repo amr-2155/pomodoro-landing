@@ -177,6 +177,13 @@ footer a{color:#C9CCEA;text-decoration:none;margin:0 .6rem}
 .tasbeeh-inner b{font-size:2.6rem;color:#fff;line-height:1.1}
 .tasbeeh-inner small{color:#9AA2B8;font-size:.8rem}
 .tasbeeh-dhikr{font-weight:900;font-size:1.15rem;color:#fff;background:rgba(52,168,83,.14);border:1px solid rgba(52,168,83,.45);padding:.35rem 1.3rem;border-radius:100px;display:inline-block}
+.live-pill{display:inline-flex;align-items:center;gap:.35rem;background:rgba(255,255,255,.05);border:1px solid rgba(52,168,83,.3);border-radius:20px;padding:.3rem .9rem;margin-top:.25rem}
+.live-pill .lp-ico{color:#34A853;font-size:.85rem;line-height:1}
+.live-pill b{font-size:.9rem;font-weight:800;letter-spacing:.5px;color:#fff;font-variant-numeric:tabular-nums;line-height:1}
+.live-pill small{font-size:.62rem;color:#9AA2B8}
+.live-pill{transition:border-color .3s,background .3s}
+.live-pill.on{border-color:#34A853;background:rgba(52,168,83,.14)}
+.live-pill.on b{color:#7BD88F}
 .goal-pop{animation:goalPop .7s ease}
 @keyframes goalPop{0%{transform:scale(1)}35%{transform:scale(1.12)}100%{transform:scale(1)}}
 /* dhikr projects */
@@ -275,10 +282,11 @@ section{padding:3.2rem 5vw}
     </div>
     <div class="reveal" style="text-align:center">
       <div class="phone" style="transform:none;margin:0 auto;box-shadow:0 40px 100px rgba(0,0,0,.6),0 0 0 10px #1c1f3d,0 0 80px rgba(52,168,83,.35)">
-        <div style="font-size:.75rem;font-weight:800;letter-spacing:2px;color:#7BD88F">سَبْحَة</div>
+        <div style="font-size:.75rem;font-weight:800;letter-spacing:2px;color:#7BD88F">السبحة</div>
         <div style="margin:.6rem 0"><span class="tasbeeh-dhikr" id="demoDhikr">أستغفر الله</span></div>
         <div class="chip-row"><span class="chip">📁 استغفار</span></div>
-        <div class="tasbeeh-ring" id="demoRing" title="دوس للعدّ"><div class="tasbeeh-inner"><div><b id="demoCount">0</b><br><small>من هدف <span id="demoGoal">100</span> • ⏱ <span id="demoTime">00:00</span></small></div></div></div>
+        <div class="live-pill"><span class="lp-ico">⏱</span><b id="demoTime">00:00</b><small>الوقت</small></div>
+        <div class="tasbeeh-ring" id="demoRing" title="دوس للعدّ"><div class="tasbeeh-inner"><div><b id="demoCount">0</b><br><small>من هدف <span id="demoGoal">100</span></small></div></div></div>
         <div class="chip-row"><span class="chip" id="demoReset">↺ تصفير</span><span class="chip" id="demoGoalBtn">🎯 الهدف: 100</span></div>
         <p style="color:#7BD88F;font-size:.8rem;margin-top:.4rem">👆 دوس على الدائرة وجرّب العدّ بنفسك</p>
       </div>
@@ -537,14 +545,14 @@ document.getElementById('quoteCard').addEventListener('mouseleave',restartQuotes
 let dCount=0,dGoal=100,dStart=null,dTick=null;
 const dCountEl=document.getElementById('demoCount'),dRing=document.getElementById('demoRing'),
       dTime=document.getElementById('demoTime'),dGoalEl=document.getElementById('demoGoal'),
-      dGoalBtn=document.getElementById('demoGoalBtn');
+      dGoalBtn=document.getElementById('demoGoalBtn'),dPill=document.querySelector('.live-pill');
 function fmtT(s){return String(Math.floor(s/60)).padStart(2,'0')+':'+String(s%60).padStart(2,'0')}
 function paintRing(){
   const p=dGoal>0?Math.min(dCount/dGoal,1):0;
   dRing.style.background=`conic-gradient(#34A853 0 ${p*100}%,rgba(255,255,255,.1) ${p*100}% 100%)`;
 }
 dRing.onclick=()=>{
-  if(!dStart){dStart=Date.now();dTick=setInterval(()=>{dTime.textContent=fmtT(Math.floor((Date.now()-dStart)/1000))},1000)}
+  if(!dStart){dStart=Date.now();dTick=setInterval(()=>{dTime.textContent=fmtT(Math.floor((Date.now()-dStart)/1000))},1000);dPill.classList.add('on')}
   dCount++;dCountEl.textContent=dCount;paintRing();
   if(dGoal>0&&dCount===dGoal){dRing.classList.remove('goal-pop');void dRing.offsetWidth;dRing.classList.add('goal-pop');dGoalBtn.textContent='🎉 ما شاء الله! بلغت الهدف'}
 };
