@@ -3,6 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<script>try{var t=localStorage.getItem('pp-theme')||(matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light');document.documentElement.dataset.theme=t;window.RM=matchMedia('(prefers-reduced-motion: reduce)').matches}catch(e){document.documentElement.dataset.theme='light';window.RM=false}</script>
 <title>Pomodoro Pro — سبحتك الذكية ورفيق ذِكرك اليومي 📿</title>
 <meta name="description" content="Pomodoro Pro — تطبيق الذِكر والإنتاجية المجاني: سبحة ذكية بعدّاد وهدف (استغفار، صلاة على النبي ﷺ)، مشاريع أذكار، اقتباسات قرآنية تتبدل تلقائياً، مؤقت بومودورو، إحصائيات. عربي وإنجليزي.">
 <meta name="keywords" content="سبحة إلكترونية, عداد الذكر, تطبيق الذكر, استغفار, الصلاة على النبي, أذكار, tasbeeh counter, dhikr app, istighfar, salawat, بومودورو, مؤقت بومودورو, pomodoro timer, pomodoro pro, تطبيق تركيز, إدارة الوقت, ورد يومي, أذكار الصباح والمساء, ختمة, ورد قرآني, focus timer, productivity app, adhkar, quran verses, مذاكرة, طلاب, ثانوية عامة, قدرات, تحصيلي">
@@ -10,7 +11,11 @@
 <meta property="og:title" content="Pomodoro Pro — لسانك رطب بذِكر الله 📿">
 <meta property="og:description" content="سبحة ذكية: عدّاد استغفار وصلاة على النبي ﷺ بهدف وحلقة تقدّم، مشاريع أذكار، وآيات وأحاديث تتبدل كل 5 ثوانٍ. مجاني وبالعربية.">
 <meta property="og:type" content="website">
-<meta property="og:image" content="images/icon.svg">
+<meta property="og:url" content="https://amr-2155.github.io/pomodoro-landing/">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Pomodoro Pro — سبحتك الذكية ورفيق ذِكرك 📿">
+<meta name="twitter:description" content="سبحة ذكية بعدّاد وهدف، حاسبة الذكر والوقت، مشاريع أذكار، مؤقت بومودورو. مجاني ومفتوح المصدر.">
+<meta property="og:image" content="https://amr-2155.github.io/pomodoro-landing/images/icon.svg">
 <link rel="icon" type="image/svg+xml" href="images/icon.svg">
 <link rel="apple-touch-icon" href="images/icon.svg">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -193,7 +198,7 @@ footer a{color:#C9CCEA;text-decoration:none;margin:0 .6rem}
 .dproj .goal{font-weight:900;color:#7BD88F}
 .dproj p{color:#B9BDD6;font-size:.9rem;margin-top:.4rem}
 /* quotes rotator */
-.quotes{background:#fff;text-align:center}
+.quotes{background:var(--surface);text-align:center}
 .quote-card{max-width:52rem;margin:2rem auto 0;background:linear-gradient(180deg,#fff,#F6F4FF);border:1px solid var(--border);border-radius:26px;padding:3rem 2.2rem;min-height:300px;display:flex;flex-direction:column;justify-content:center;box-shadow:0 24px 60px rgba(108,99,255,.1);position:relative;overflow:hidden}
 .quote-card::before{content:'\201C';position:absolute;top:-1.5rem;right:1.5rem;font-size:9rem;color:rgba(108,99,255,.1);font-family:serif}
 #quoteText{font-size:clamp(1.2rem,2.6vw,1.8rem);font-weight:800;line-height:2}
@@ -219,6 +224,45 @@ footer a{color:#C9CCEA;text-decoration:none;margin:0 .6rem}
 .services-grid,.season-grid,.gallery-grid,.area-cities{grid-template-columns:1fr}
 section{padding:3.2rem 5vw}
 }
+/* ── Million-dollar upgrade: theme system + premium details ── */
+:root{--list:#4A5268;--text-light:#4A5268}
+[data-theme="dark"]{--bg-light:#0B0D1F;--surface:#161A36;--text:#EDEFFF;--muted:#9AA2B8;--border:#2A2E4F;--list:#C9CCEA;--text-light:#C9CCEA;--navy:#EDEFFF}
+::selection{background:rgba(108,99,255,.35)}
+:focus-visible{outline:2px solid var(--primary);outline-offset:3px;border-radius:8px}
+::-webkit-scrollbar{width:10px}
+::-webkit-scrollbar-track{background:var(--bg-light)}
+::-webkit-scrollbar-thumb{background:linear-gradient(var(--primary),var(--accent));border-radius:8px}
+@media (prefers-reduced-motion: reduce){html{scroll-behavior:auto}}
+#download,#faq,#testimonials,.quotes{background:var(--surface)}
+.quote-card{background:linear-gradient(180deg,var(--surface),rgba(108,99,255,.07))}
+.faq-a,.price-card ul{color:var(--list)}
+[data-theme="dark"] .price-card .amount{color:#A79FFF}
+[data-theme="dark"] .nav.scrolled{background:rgba(11,13,31,.88);box-shadow:0 6px 30px rgba(0,0,0,.4)}
+[data-theme="dark"] .nav.scrolled .nav-links a{color:#EDEFFF}
+[data-theme="dark"] .nav.scrolled .nav-logo{color:#fff;text-shadow:none}
+[data-theme="dark"] .nav.scrolled .mobile-toggle span{background:#fff}
+.theme-btn{width:42px;height:42px;border-radius:50%;border:1px solid rgba(255,255,255,.25);background:rgba(255,255,255,.1);color:#fff;font-size:1.15rem;cursor:pointer;transition:.3s;backdrop-filter:blur(8px)}
+.theme-btn:hover{transform:rotate(15deg) scale(1.08)}
+.nav.scrolled .theme-btn{background:rgba(14,16,32,.06);border-color:var(--border);color:var(--navy)}
+[data-theme="dark"] .nav.scrolled .theme-btn{background:rgba(255,255,255,.08);border-color:rgba(255,255,255,.2);color:#fff}
+.rm .reveal{opacity:1!important;transform:none!important}
+.mq{background:linear-gradient(180deg,#0E1020,#141736);border-top:1px solid rgba(232,217,168,.25);border-bottom:1px solid rgba(232,217,168,.25);overflow:hidden;direction:ltr;padding:.9rem 0}
+.mq-track{display:flex;width:max-content;animation:mq 28s linear infinite}
+.mq:hover .mq-track{animation-play-state:paused}
+.mq-track span{color:#E8D9A8;font-weight:800;font-size:1rem;padding:0 1.4rem;white-space:nowrap}
+@keyframes mq{to{transform:translateX(-50%)}}
+#stickyCta{position:fixed;bottom:0;right:0;left:0;z-index:90;display:none;background:linear-gradient(135deg,var(--primary),var(--primary-dark));color:#fff;text-align:center;font-weight:900;padding:.95rem;text-decoration:none;transform:translateY(110%);transition:transform .35s;box-shadow:0 -8px 30px rgba(0,0,0,.3)}
+#stickyCta.show{transform:none}
+@media(max-width:768px){#stickyCta.show{display:block}}
+#toTop{position:fixed;bottom:5.2rem;left:1.1rem;z-index:90;width:46px;height:46px;border-radius:50%;border:1px solid var(--border);background:var(--surface);color:var(--primary);font-size:1.3rem;font-weight:900;cursor:pointer;opacity:0;pointer-events:none;transition:.3s;box-shadow:0 10px 28px rgba(0,0,0,.25)}
+#toTop.show{opacity:1;pointer-events:auto}
+@media(min-width:769px){#toTop{bottom:1.4rem}}
+.hero-glow{position:absolute;inset:0;pointer-events:none;z-index:0}
+.hero>*{position:relative;z-index:1}
+.ver{display:inline-block;background:rgba(108,99,255,.15);border:1px solid rgba(139,131,255,.4);color:#B9B4FF;font-size:.72rem;font-weight:800;padding:.1rem .7rem;border-radius:100px}
+.btn-primary{position:relative;overflow:hidden}
+.btn-primary::after{content:'';position:absolute;top:0;bottom:0;width:60px;background:linear-gradient(100deg,transparent,rgba(255,255,255,.45),transparent);left:-80px;transform:skewX(-20deg);transition:left .6s}
+.btn-primary:hover::after{left:130%}
 </style>
 </head>
 <body>
@@ -229,6 +273,7 @@ section{padding:3.2rem 5vw}
     <a href="#dhikr">الذِّكر 📿</a><a href="#quotes">اقتباسات</a><a href="#features">المزايا</a><a href="#update">الجديد 🆕</a><a href="#download">تحميل</a><a href="#faq">الأسئلة</a><a href="#contact">تواصل معنا</a>
     <a class="nav-cta" href="https://amr-2155.github.io/pomodoro-pro/" target="_blank" rel="noopener">جرّب الآن مجاناً</a>
   </div>
+  <button class="theme-btn" id="themeBtn" aria-label="تبديل المظهر">🌙</button>
   <button class="mobile-toggle" id="menuBtn" aria-label="القائمة"><span></span><span></span><span></span></button>
 </nav>
 
@@ -257,6 +302,8 @@ section{padding:3.2rem 5vw}
     </div>
   </div>
 </header>
+
+<div class="mq" aria-hidden="true"><div class="mq-track"><span>أستغفر الله ✦ سبحان الله ✦ الحمد لله ✦ الله أكبر ✦ لا إله إلا الله ✦ اللهم صلِّ على محمد ﷺ ✦&nbsp;</span><span>أستغفر الله ✦ سبحان الله ✦ الحمد لله ✦ الله أكبر ✦ لا إله إلا الله ✦ اللهم صلِّ على محمد ﷺ ✦&nbsp;</span></div></div>
 
 <section class="dhikr" id="dhikr">
   <div class="dhikr-grid">
@@ -382,7 +429,7 @@ section{padding:3.2rem 5vw}
   </div>
 </section>
 
-<section id="download" style="background:#fff">
+<section id="download">
   <span class="sec-tag">📥 التحميل</span>
   <h2 class="sec-title reveal">حمّل التطبيق في ثوانٍ — مجاناً</h2>
   <p class="sec-sub reveal">بدون حساب، بدون إعلانات، مفتوح المصدر برخصة MIT. اختر الطريقة المناسبة لجهازك.</p>
@@ -407,7 +454,7 @@ section{padding:3.2rem 5vw}
   </div>
 </section>
 
-<section id="testimonials" style="background:#fff">
+<section id="testimonials">
   <span class="sec-tag">⭐ آراء المستخدمين</span>
   <h2 class="sec-title reveal">ذِكر بالآلاف… وإنجاز بالساعات</h2>
   <div class="testi-grid" style="margin-top:2rem">
@@ -439,7 +486,7 @@ section{padding:3.2rem 5vw}
   </div>
 </section>
 
-<section id="faq" style="background:#fff">
+<section id="faq">
   <span class="sec-tag">❓ الأسئلة الشائعة</span>
   <h2 class="sec-title reveal">كل ما تريد معرفته</h2>
   <div class="faq-list" style="margin-top:2rem">
@@ -496,10 +543,12 @@ section{padding:3.2rem 5vw}
   </div>
 </section>
 
+<a id="stickyCta" href="#download">⬇ حمّل التطبيق مجاناً — v1.5.3</a>
+<button id="toTop" aria-label="العودة للأعلى">↑</button>
 <footer>
   <div><a href="#dhikr">الذِّكر</a><a href="#quotes">اقتباسات</a><a href="#features">المزايا</a><a href="#update">الجديد 🆕</a><a href="#download">تحميل</a><a href="#faq">الأسئلة</a><a href="#contact">تواصل معنا</a><a href="https://github.com/amr-2155/pomodoro-pro" target="_blank" rel="noopener">GitHub</a></div>
   <div style="margin-top:.8rem;display:flex;gap:1.2rem;justify-content:center;flex-wrap:wrap"><a href="https://www.facebook.com/AmrSaidAI/" target="_blank" rel="noopener">📘 فيسبوك</a><a href="https://wa.me/201019959117" target="_blank" rel="noopener">💬 واتساب</a><a href="mailto:amrsmka36@gmail.com">📧 البريد</a></div>
-  <p style="margin-top:1rem">© 2026 Pomodoro Pro — MIT License • صُنع للذِكر أولاً 💚 • «فَاذْكُرُونِي أَذْكُرْكُمْ» — البقرة: 152</p>
+  <p style="margin-top:1rem">© 2026 Pomodoro Pro — MIT License <span class="ver">v1.5.3</span> • صُنع للذِكر أولاً 💚 • «فَاذْكُرُونِي أَذْكُرْكُمْ» — البقرة: 152</p>
 </footer>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
@@ -511,15 +560,15 @@ menuBtn.onclick=()=>navLinks.classList.toggle('open');
 navLinks.querySelectorAll('a').forEach(a=>a.onclick=()=>navLinks.classList.remove('open'));
 document.querySelectorAll('.faq-q').forEach(btn=>btn.onclick=()=>{
   const item=btn.parentElement,was=item.classList.contains('open');
-  document.querySelectorAll('.faq-item').forEach(i=>{i.classList.remove('open');i.querySelector('span').textContent='+'});
-  if(!was){item.classList.add('open');btn.querySelector('span').textContent='−'}
+  document.querySelectorAll('.faq-item').forEach(i=>{i.classList.remove('open');i.querySelector('span').textContent='+';i.querySelector('.faq-q').setAttribute('aria-expanded','false')});
+  if(!was){item.classList.add('open');btn.querySelector('span').textContent='−';btn.setAttribute('aria-expanded','true')}
 });
-gsap.registerPlugin(ScrollTrigger);
+if(!window.RM){gsap.registerPlugin(ScrollTrigger);
 gsap.utils.toArray('.reveal').forEach(el=>{
   gsap.to(el,{opacity:1,y:0,duration:.9,ease:'power3.out',scrollTrigger:{trigger:el,start:'top 88%'}});
 });
 gsap.to('.hero h1',{y:-40,scrollTrigger:{trigger:'.hero',start:'top top',end:'bottom top',scrub:true}});
-gsap.to('#phoneTilt',{y:40,rotateY:-4,scrollTrigger:{trigger:'.hero',start:'top top',end:'bottom top',scrub:true}});
+gsap.to('#phoneTilt',{y:40,rotateY:-4,scrollTrigger:{trigger:'.hero',start:'top top',end:'bottom top',scrub:true}});}
 document.querySelectorAll('[data-count]').forEach(el=>{
   const target=+el.dataset.count;
   ScrollTrigger.create({trigger:el,start:'top 92%',once:true,onEnter:()=>{
@@ -552,7 +601,7 @@ function showQuote(i,manual){
     .to([qT,qS,qC],{opacity:1,y:0,duration:.6,ease:'power3.out',stagger:.06});
   if(manual)restartQuotes();
 }
-function restartQuotes(){clearInterval(qTimer);qTimer=setInterval(()=>showQuote(qi+1),5000)}
+function restartQuotes(){if(window.RM)return;clearInterval(qTimer);qTimer=setInterval(()=>showQuote(qi+1),5000)}
 restartQuotes();
 document.getElementById('quoteCard').addEventListener('mouseenter',()=>clearInterval(qTimer));
 document.getElementById('quoteCard').addEventListener('mouseleave',restartQuotes);
@@ -581,11 +630,29 @@ document.querySelectorAll('#demoChips .dchip').forEach(ch=>ch.onclick=()=>{
 let hCount=347;const hEl=document.getElementById('heroCount'),hRing=document.getElementById('heroTasbeeh');
 const heroDhikrs=['أستغفر الله','اللهم صلِّ على محمد ﷺ','سبحان الله','الحمد لله'];
 let hi=0;
-setInterval(()=>{
+if(!window.RM)setInterval(()=>{
   hCount++;if(hCount>1000){hCount=0;hi=(hi+1)%heroDhikrs.length;document.getElementById('heroDhikr').textContent=heroDhikrs[hi]}
   hEl.textContent=hCount;
   hRing.style.background=`conic-gradient(#34A853 0 ${hCount/10}%,rgba(255,255,255,.1) ${hCount/10}% 100%)`;
 },900);
+/* ── Million-dollar upgrade: theme, sticky CTA, cursor glow ── */
+(function(){
+const root=document.documentElement;
+const btn=document.getElementById('themeBtn'),meta=document.querySelector('meta[name="theme-color"]');
+function syncTheme(){const t=root.dataset.theme||'light';btn.textContent=t==='dark'?'☀️':'🌙';btn.setAttribute('aria-label',t==='dark'?'التبديل للوضع النهاري':'التبديل للوضع الليلي');if(meta)meta.setAttribute('content',t==='dark'?'#0E1020':'#F4F5F9')}
+function setTheme(t){root.dataset.theme=t;try{localStorage.setItem('pp-theme',t)}catch(e){}syncTheme()}
+btn.onclick=()=>setTheme(root.dataset.theme==='dark'?'light':'dark');syncTheme();
+if(window.RM)root.classList.add('rm');
+const sticky=document.getElementById('stickyCta'),dl=document.getElementById('download'),toTop=document.getElementById('toTop');
+function onSX(){const y=scrollY;toTop.classList.toggle('show',y>600);if(dl){const r=dl.getBoundingClientRect();sticky.classList.toggle('show',y>innerHeight*0.9&&r.top>innerHeight*0.4)}}
+addEventListener('scroll',onSX,{passive:true});onSX();
+toTop.onclick=()=>scrollTo({top:0,behavior:window.RM?'auto':'smooth'});
+const hero=document.querySelector('.hero');
+if(hero&&!window.RM&&matchMedia('(pointer:fine)').matches){
+  const glow=document.createElement('div');glow.className='hero-glow';hero.appendChild(glow);
+  hero.addEventListener('mousemove',e=>{const r=hero.getBoundingClientRect(),x=e.clientX-r.left,y=e.clientY-r.top;glow.style.background=`radial-gradient(440px at ${x}px ${y}px,rgba(139,131,255,.18),transparent 70%)`});
+}
+})();
 </script>
 </body>
 </html>
