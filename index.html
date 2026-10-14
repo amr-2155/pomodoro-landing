@@ -259,10 +259,58 @@ section{padding:3.2rem 5vw}
 @media(min-width:769px){#toTop{bottom:1.4rem}}
 .hero-glow{position:absolute;inset:0;pointer-events:none;z-index:0}
 .hero>*{position:relative;z-index:1}
-.ver{display:inline-block;background:rgba(108,99,255,.15);border:1px solid rgba(139,131,255,.4);color:#B9B4FF;font-size:.72rem;font-weight:800;padding:.1rem .7rem;border-radius:100px}
+.ver{display:inline-block;background:rgba(108,99,255,.15);border:1px solid rgba(139,131,255,.4);color:#4E4BC8;font-size:.72rem;font-weight:800;padding:.1rem .7rem;border-radius:100px}
+[data-theme="dark"] .ver{color:#B9B4FF}
 .btn-primary{position:relative;overflow:hidden}
 .btn-primary::after{content:'';position:absolute;top:0;bottom:0;width:60px;background:linear-gradient(100deg,transparent,rgba(255,255,255,.45),transparent);left:-80px;transform:skewX(-20deg);transition:left .6s}
 .btn-primary:hover::after{left:130%}
+/* ── Full consistent theming: light = all light, dark = all dark ── */
+:root{--band-bg:linear-gradient(180deg,#EAF0FF,#F4F5F9);--dhikr-bg:radial-gradient(900px 420px at 85% 0%,rgba(52,168,83,.16),transparent),linear-gradient(180deg,#EAFBF0,#F4F5F9);--band-title:#1F2430;--band-sub:#5A6280;--card2-bg:#fff;--card2-border:#E4E7EF;--hero-bg:radial-gradient(1000px 500px at 80% -5%,rgba(108,99,255,.16),transparent),radial-gradient(800px 500px at 10% 110%,rgba(255,101,132,.1),transparent),linear-gradient(180deg,#EDEFFB,#F4F5F9 70%);--hero-tx:#1F2430;--hero-sub:#5A6280;--hero-badge-bg:rgba(108,99,255,.08);--hero-badge-border:rgba(108,99,255,.28);--hero-badge-tx:#4E4BC8;--hero-stat-border:rgba(14,16,32,.12);--navlink:#1F2430;--ghost-bg:rgba(14,16,32,.05);--ghost-tx:#1F2430;--ghost-border:rgba(14,16,32,.2);--ghost-hover:rgba(14,16,32,.1);--foot-bg:#E9ECF5;--foot-tx:#5A6280;--foot-link:#4E4BC8;--mq-bg:linear-gradient(180deg,#FFF8E6,#FFF1D2);--goldtx:#8a6d1a;--goalgreen:#1E8E3E;--dchip-bg:rgba(52,168,83,.08);--dchip-border:rgba(52,168,83,.45);--dchip-tx:#1E7A38}
+[data-theme="dark"]{--band-bg:linear-gradient(180deg,#141736,#0E1020);--dhikr-bg:radial-gradient(900px 420px at 85% 0%,rgba(52,168,83,.16),transparent),linear-gradient(180deg,#101425,#0E1020);--band-title:#fff;--band-sub:#9AA2B8;--card2-bg:rgba(255,255,255,.05);--card2-border:rgba(255,255,255,.12);--hero-bg:radial-gradient(1000px 500px at 80% -5%,rgba(108,99,255,.45),transparent),radial-gradient(800px 500px at 10% 110%,rgba(255,101,132,.28),transparent),linear-gradient(180deg,#141736,#0E1020 70%);--hero-tx:#fff;--hero-sub:#B9BDD6;--hero-badge-bg:rgba(255,255,255,.08);--hero-badge-border:rgba(255,255,255,.16);--hero-badge-tx:#D9D7FF;--hero-stat-border:rgba(255,255,255,.12);--navlink:rgba(255,255,255,.85);--ghost-bg:rgba(255,255,255,.08);--ghost-tx:#fff;--ghost-border:rgba(255,255,255,.2);--ghost-hover:rgba(255,255,255,.16);--foot-bg:#0B0D1F;--foot-tx:#9AA2B8;--foot-link:#C9CCEA;--mq-bg:linear-gradient(180deg,#0E1020,#141736);--goldtx:#E8D9A8;--goalgreen:#7BD88F;--dchip-bg:rgba(52,168,83,.1);--dchip-border:rgba(52,168,83,.5);--dchip-tx:#C9F2D4}
+.hero{background:var(--hero-bg);color:var(--hero-tx)}
+.hero-badge{background:var(--hero-badge-bg);border-color:var(--hero-badge-border);color:var(--hero-badge-tx)}
+.hero p.sub{color:var(--hero-sub)}
+.hero-stats{border-top-color:var(--hero-stat-border)}
+.hero-stat-num{color:var(--hero-tx)}
+.hero-stat-label{color:var(--hero-sub)}
+.nav-links a{color:var(--navlink)}
+.nav-links a:hover{color:var(--primary)}
+.nav-logo{color:var(--hero-tx);text-shadow:none}
+[data-theme="dark"] .nav-logo{text-shadow:0 2px 20px rgba(0,0,0,.4)}
+.nav-logo span{color:var(--primary)}
+[data-theme="dark"] .nav-logo span{color:var(--primary-light)}
+.mobile-toggle span{background:var(--navlink)}
+.btn-ghost{background:var(--ghost-bg);color:var(--ghost-tx);border-color:var(--ghost-border)}
+.btn-ghost:hover{background:var(--ghost-hover);transform:translateY(-3px)}
+.theme-btn{background:var(--ghost-bg);border-color:var(--ghost-border);color:var(--ghost-tx)}
+.dhikr{background:var(--dhikr-bg);color:var(--band-title)}
+.dhikr .sec-sub{color:var(--band-sub)}
+.dhikr-list li{background:var(--card2-bg);border-color:var(--card2-border);color:var(--band-sub)}
+.dhikr-list li b{color:var(--band-title)}
+.dchip{background:var(--dchip-bg);border-color:var(--dchip-border);color:var(--dchip-tx)}
+.modes{background:var(--band-bg);color:var(--band-title)}
+.modes .sec-sub{color:var(--band-sub)}
+.season-card{background:var(--card2-bg);border-color:var(--card2-border)}
+.season-card p{color:var(--band-sub)}
+.season-card:hover{transform:translateY(-6px);box-shadow:0 18px 40px rgba(14,16,32,.1)}
+.prepare{background:var(--band-bg);color:var(--band-title)}
+.prepare-card{background:var(--card2-bg);border-color:var(--card2-border)}
+.prepare-card ul{color:var(--band-sub)}
+.dproj{background:var(--card2-bg);border-color:var(--card2-border)}
+.dproj .goal{color:var(--goalgreen)}
+.dproj p{color:var(--band-sub)}
+#update{background:var(--band-bg);color:var(--band-title)}
+footer{background:var(--foot-bg);color:var(--foot-tx)}
+footer a{color:var(--foot-link)}
+.mq{background:var(--mq-bg)}
+.mq-track span{color:var(--goldtx)}
+[data-theme="dark"] .sec-tag{color:#A79FFF}
+[data-theme="dark"] .area-city .time{color:#A79FFF}
+[data-theme="dark"] .contact-card a,[data-theme="dark"] #quoteSource{color:#A79FFF}
+[data-theme="dark"] #quoteCat{color:#7BD88F}
+.trust-row{display:flex;gap:1.4rem;flex-wrap:wrap;margin-top:1.6rem;font-size:.85rem;font-weight:800;color:var(--hero-sub)}
+.trust-row i{color:#34A853;font-style:normal;margin-left:.3rem}
+.trust-note{display:inline-block;margin-top:.8rem;font-size:.82rem;color:var(--muted);background:rgba(108,99,255,.08);border:1px dashed rgba(108,99,255,.45);padding:.35rem 1.1rem;border-radius:100px}
 </style>
 </head>
 <body>
@@ -286,6 +334,7 @@ section{padding:3.2rem 5vw}
       <a class="btn btn-primary" href="#dhikr">📿 جرّب السبحة الآن</a>
       <a class="btn btn-ghost" href="https://amr-2155.github.io/pomodoro-pro/" target="_blank" rel="noopener">🚀 افتح التطبيق</a>
     </div>
+    <div class="trust-row"><span><i>✓</i> بدون حساب</span><span><i>✓</i> بدون إعلانات</span><span><i>✓</i> يعمل أوفلاين</span><span><i>✓</i> مفتوح المصدر</span></div>
     <div class="hero-stats">
       <div><div class="hero-stat-num" data-count="6">6</div><div class="hero-stat-label">أذكار جاهزة</div></div>
       <div><div class="hero-stat-num"><span data-count="1000">1000</span>+</div><div class="hero-stat-label">هدف سبحة قابل للضبط</div></div>
@@ -417,10 +466,10 @@ section{padding:3.2rem 5vw}
   </div>
 </section>
 
-<section id="update" style="background:linear-gradient(180deg,#141736,#0E1020);color:#fff">
+<section id="update">
   <span class="sec-tag">🆕 تحديث جديد — v1.5.3</span>
   <h2 class="sec-title reveal">حاسبة الذكر والوقت… تظهر لك من أول فتح</h2>
-  <p class="sec-sub reveal" style="color:#9AA2B8">من أول تشغيل بعد التثبيت: شاشة ترحيب سريعة بالمزايا، ثم يفتح المؤقت على وضع «تصاعدي» وتنزلق الحاسبة أمامك تلقائيًا — بلا بحث ولا تمرير يدوي.</p>
+  <p class="sec-sub reveal">من أول تشغيل بعد التثبيت: شاشة ترحيب سريعة بالمزايا، ثم يفتح المؤقت على وضع «تصاعدي» وتنزلق الحاسبة أمامك تلقائيًا — بلا بحث ولا تمرير يدوي.</p>
   <div class="season-grid">
     <div class="season-card reveal"><h3>🧮 كم يستغرق وردك؟</h3><p>اختر الذكر وعدد التكرارات وسرعتك، والحاسبة تقدّر لك مدة الورد بالدقائق فورًا.</p></div>
     <div class="season-card reveal"><h3>🔢 أقدر أذكر كام مرة؟</h3><p>حدد الدقائق المتاحة معك، واعرف عدد التكرارات الذي يناسب وقتك الحقيقي.</p></div>
@@ -435,7 +484,7 @@ section{padding:3.2rem 5vw}
   <p class="sec-sub reveal">بدون حساب، بدون إعلانات، مفتوح المصدر برخصة MIT. اختر الطريقة المناسبة لجهازك.</p>
   <div class="pricing-grid">
     <div class="price-card hot reveal"><div style="font-size:2.6rem">🤖</div><h3>تطبيق الأندرويد APK</h3><div class="amount">تحميل مباشر <span style="font-size:1rem;color:var(--muted)">v1.5.3 • 24MB</span></div><ul><li>✓ دوس تحميل — الملف ينزل على طول بدون أي صفحات</li><li>✓ حاسبة الذكر والوقت: عداد تصاعدي حي تحت المؤقت (شغال مع كل ضغطة)</li><li>✓ مؤقت خلفية دقيق + اهتزاز حتى لو التطبيق مقفول</li><li>✓ ثبّت الملف وفعّل «مصادر غير معروفة» مرة واحدة</li></ul><a class="btn btn-primary" href="https://github.com/amr-2155/pomodoro-pro/raw/main/releases/pomodoro-pro-v1.5.3-arm64.apk" download="pomodoro-pro-v1.5.3.apk" style="font-size:1.1rem;padding:1rem 2.6rem">⬇ حمّل APK الآن</a><p style="margin-top:.9rem;font-size:.82rem;color:var(--muted)">لأجهزة arm64 (معظم أجهزة الأندرويد الحديثة)</p></div>
-    <div class="price-card reveal"><div style="font-size:2.6rem">🌐</div><h3>نسخة الويب PWA — بدون تحميل</h3><div class="amount">افتح واشتغل فوراً</div><ul><li>✓ شغالة من المتصفح مباشرة: موبايل، تابلت، كمبيوتر</li><li>✓ ثبّتها كتطبيق: من المتصفح ⋮ ← «تثبيت التطبيق» وتشتغل أوفلاين</li><li>✓ أصوات مطر وغابة ومقهى + تنبيهات + وضع ليلي</li><li>✓ تحديثات تلقائية — دايماً آخر نسخة بدون تحميل</li></ul><a class="btn btn-ghost" style="color:var(--primary-dark);border-color:var(--border);font-size:1.05rem;padding:.95rem 2.4rem" href="https://amr-2155.github.io/pomodoro-pro/" target="_blank" rel="noopener">🚀 افتح نسخة الويب</a><p style="margin-top:.9rem;font-size:.82rem;color:var(--muted)">مثالية للتجربة السريعة وأجهزة الكمبيوتر</p></div>
+    <div class="price-card reveal"><div style="font-size:2.6rem">🌐</div><h3>نسخة الويب PWA — بدون تحميل</h3><div class="amount">افتح واشتغل فوراً</div><ul><li>✓ شغالة من المتصفح مباشرة: موبايل، تابلت، كمبيوتر</li><li>✓ ثبّتها كتطبيق: من المتصفح ⋮ ← «تثبيت التطبيق» وتشتغل أوفلاين</li><li>✓ أصوات مطر وغابة ومقهى + تنبيهات + وضع ليلي</li><li>✓ تحديثات تلقائية — دايماً آخر نسخة بدون تحميل</li></ul><a class="btn btn-ghost" style="font-size:1.05rem;padding:.95rem 2.4rem" href="https://amr-2155.github.io/pomodoro-pro/" target="_blank" rel="noopener">🚀 افتح نسخة الويب</a><p style="margin-top:.9rem;font-size:.82rem;color:var(--muted)">مثالية للتجربة السريعة وأجهزة الكمبيوتر</p></div>
   </div>
 </section>
 
@@ -457,6 +506,7 @@ section{padding:3.2rem 5vw}
 <section id="testimonials">
   <span class="sec-tag">⭐ آراء المستخدمين</span>
   <h2 class="sec-title reveal">ذِكر بالآلاف… وإنجاز بالساعات</h2>
+  <p class="trust-note reveal">🛡️ للمصداقية: هذه آراء تجريبية للعرض وليست تقييمات مستخدمين حقيقيين.</p>
   <div class="testi-grid" style="margin-top:2rem">
     <div class="testi reveal"><div class="stars">★★★★★</div><p>"كنت بدوّر على سبحة إلكترونية تحفظ عدّي — لقيت 10,000 استغفار متسجلين بالعدد والمدة. التطبيق ده اتعمل عشاني."</p><b>— مواظب على ورد الاستغفار</b></div>
     <div class="testi reveal"><div class="stars">★★★★★</div><p>"ألف صلاة على النبي ﷺ كل يوم بقت عادة بفضل الهدف اليومي والاهتزاز مع كل عدّة. والإحصائيات بتشجع."</p><b>— محب للصلاة على النبي ﷺ</b></div>
@@ -569,12 +619,13 @@ gsap.utils.toArray('.reveal').forEach(el=>{
 });
 gsap.to('.hero h1',{y:-40,scrollTrigger:{trigger:'.hero',start:'top top',end:'bottom top',scrub:true}});
 gsap.to('#phoneTilt',{y:40,rotateY:-4,scrollTrigger:{trigger:'.hero',start:'top top',end:'bottom top',scrub:true}});}
-document.querySelectorAll('[data-count]').forEach(el=>{
-  const target=+el.dataset.count;
-  ScrollTrigger.create({trigger:el,start:'top 92%',once:true,onEnter:()=>{
-    gsap.fromTo(el,{innerText:0},{innerText:target,duration:1.6,snap:{innerText:1},ease:'power2.out'});
-  }});
-});
+/* motion counters: start from 0 on first view, no dependency risk */
+document.querySelectorAll('[data-count]').forEach(el=>{el.textContent='0'});
+function animCount(el){const target=+el.dataset.count;if(window.RM||!(target>0)){el.textContent=target;return}const t0=performance.now(),D=1500;function fr(t){const p=Math.min((t-t0)/D,1),e=1-Math.pow(1-p,3);el.textContent=Math.round(target*e);if(p<1)requestAnimationFrame(fr)}requestAnimationFrame(fr)}
+if('IntersectionObserver' in window){
+  const cio=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){animCount(e.target);cio.unobserve(e.target)}}),{threshold:.4});
+  document.querySelectorAll('[data-count]').forEach(el=>cio.observe(el));
+}else{document.querySelectorAll('[data-count]').forEach(animCount)}
 /* ── Quotes rotator: real quotes from the app's QuoteLibrary, every 5s ── */
 const QUOTES=[
  {t:'أَلَا بِذِكْرِ اللَّهِ تَطْمَئِنُّ الْقُلُوبُ',s:'الرعد: 28',c:'الأذكار والدعاء'},
