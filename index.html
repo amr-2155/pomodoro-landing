@@ -107,7 +107,7 @@ section{padding:5rem 5vw}
 .sec-sub{color:var(--muted);max-width:44rem;margin-bottom:2.4rem}
 /* services grid */
 .services-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1.2rem}
-.service-card{--acc:var(--primary);position:relative;overflow:hidden;background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:1.7rem 1.35rem;transition:transform .38s cubic-bezier(.22,1,.36,1),box-shadow .38s,border-color .38s}
+.service-card{--acc:var(--primary);position:relative;overflow:hidden;background:var(--bg-light);border:1px solid var(--border);border-radius:var(--radius);padding:1.7rem 1.35rem;transition:transform .38s cubic-bezier(.22,1,.36,1),box-shadow .38s,border-color .38s}
 .service-card::after{content:'';position:absolute;inset:0 0 auto 0;height:4px;background:linear-gradient(90deg,var(--acc),color-mix(in srgb,var(--acc) 45%,#fff));transform:scaleX(.35);transform-origin:right;opacity:.55;transition:opacity .38s,transform .38s}
 .service-card:hover,.service-card:focus-visible{transform:translateY(-8px);border-color:color-mix(in srgb,var(--acc) 45%,var(--border));box-shadow:0 24px 52px color-mix(in srgb,var(--acc) 28%,transparent)}
 .service-card:hover::after,.service-card:focus-visible::after{opacity:1;transform:scaleX(1)}
@@ -140,7 +140,7 @@ a.service-card:focus-visible,a.season-card:focus-visible,a.area-city:focus-visib
 /* showcase */
 .facility-grid{display:grid;grid-template-columns:1fr 1fr;gap:3rem;align-items:center}
 .spec-grid{display:grid;grid-template-columns:1fr 1fr;gap:.9rem;margin-top:1.4rem}
-.spec{background:var(--surface);border:1px solid var(--border);border-radius:14px;padding:1rem 1.1rem}
+.spec{background:var(--bg-light);border:1px solid var(--border);border-radius:14px;padding:1rem 1.1rem}
 .spec b{display:block}
 .spec small{color:var(--muted)}
 .feat-list{list-style:none;margin-top:1.2rem;display:grid;gap:.55rem}
@@ -168,7 +168,7 @@ a.service-card:focus-visible,a.season-card:focus-visible,a.area-city:focus-visib
 .prepare-card ul{list-style:none;margin-top:.8rem;display:grid;gap:.5rem;color:#C9CCEA;font-size:.93rem}
 /* use cases */
 .area-cities{display:grid;grid-template-columns:repeat(4,1fr);gap:1.2rem}
-.area-city{--acc:var(--primary);background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:1.5rem;transition:transform .32s cubic-bezier(.22,1,.36,1),box-shadow .32s,border-color .32s}
+.area-city{--acc:var(--primary);background:var(--bg-light);border:1px solid var(--border);border-radius:var(--radius);padding:1.5rem;transition:transform .32s cubic-bezier(.22,1,.36,1),box-shadow .32s,border-color .32s}
 .area-city:hover{transform:translateY(-6px);border-color:color-mix(in srgb,var(--acc) 50%,var(--border));box-shadow:0 18px 44px color-mix(in srgb,var(--acc) 26%,transparent)}
 .area-city .time{font-size:.78rem;font-weight:800;color:var(--primary)}
 /* faq */
@@ -227,15 +227,17 @@ footer a{color:#C9CCEA;text-decoration:none;margin:0 .6rem}
 .qdot{width:10px;height:10px;border-radius:50%;background:#D5D9E5;cursor:pointer;transition:.3s}
 .qdot.on{background:var(--primary);transform:scale(1.3)}
 .contact-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.2rem;max-width:56rem;margin:2rem auto 0}@media(max-width:768px){.contact-grid{grid-template-columns:1fr;max-width:24rem}}
-.contact-card{background:#fff;border:1px solid var(--border);border-radius:22px;padding:1.8rem 1.4rem;text-align:center;transition:.3s;box-shadow:0 12px 30px rgba(108,99,255,.08)}
+.contact-card{background:var(--bg-light);border:1px solid var(--border);border-radius:22px;padding:1.8rem 1.4rem;text-align:center;transition:.3s;box-shadow:0 12px 30px rgba(108,99,255,.08)}
 .contact-card:hover{transform:translateY(-4px);box-shadow:0 20px 46px rgba(108,99,255,.16)}
-.contact-card .contact-ico{width:62px;height:62px;margin:0 auto;border-radius:17px;display:grid;place-items:center;color:var(--acc,var(--primary));background:color-mix(in srgb,var(--acc,var(--primary)) 12%,transparent);box-shadow:inset 0 0 0 1px color-mix(in srgb,var(--acc,var(--primary)) 22%,transparent);transition:transform .35s cubic-bezier(.22,1,.36,1),background .35s}
+.contact-card .contact-ico{width:62px;height:62px;margin:0 auto;border-radius:17px;display:grid;place-items:center;color:var(--acc,var(--primary));background:color-mix(in srgb,var(--acc,var(--primary)) 12%,transparent);box-shadow:inset 0 0 0 1px color-mix(in srgb,var(--acc,var(--primary)) 22%,transparent);transition:transform .35s cubic-bezier(.22,1,.36,1),background .35s,box-shadow .35s;text-decoration:none;cursor:pointer}
+.contact-card .contact-ico:focus-visible{outline:3px solid color-mix(in srgb,var(--acc,var(--primary)) 55%,transparent);outline-offset:3px}
+.contact-card .contact-ico:hover{background:color-mix(in srgb,var(--acc,var(--primary)) 20%,transparent)}
 .contact-card .contact-ico svg{width:30px;height:30px;stroke:currentColor;stroke-width:2;fill:none;stroke-linecap:round;stroke-linejoin:round}
 .contact-card:hover .contact-ico{transform:translateY(-3px) scale(1.08);background:color-mix(in srgb,var(--acc) 18%,transparent)}
 .contact-card h3{margin:.55rem 0 .15rem;font-size:1.05rem;font-weight:800}
 .contact-card p{margin:0;font-size:.82rem;color:var(--text-light);opacity:.85}
-.contact-card a{display:block;margin-top:.7rem;color:var(--primary-dark);font-weight:800;text-decoration:none;font-size:.95rem;word-break:break-all}
-.contact-card a:hover{text-decoration:underline}
+.contact-card a:not(.contact-ico){display:block;margin-top:.7rem;color:var(--primary-dark);font-weight:800;text-decoration:none;font-size:.95rem;word-break:break-all}
+.contact-card a:not(.contact-ico):hover{text-decoration:underline}
 @media (max-width:1024px){.dhikr-grid{grid-template-columns:1fr}.dproj-grid{grid-template-columns:1fr}.services-grid,.season-grid,.gallery-grid,.area-cities{grid-template-columns:repeat(2,1fr)}.hero{grid-template-columns:1fr;text-align:center}.hero p.sub{margin:0 auto}.hero-btns,.hero-stats{justify-content:center}.phone{transform:none}.facility-grid{grid-template-columns:1fr}.pricing-grid,.testi-grid,.prepare-grid{grid-template-columns:1fr}.nav-links{display:none}.nav-links.open{display:flex;position:fixed;inset:0;background:#0E1020;flex-direction:column;justify-content:center;font-size:1.4rem}.nav-links.open a{color:#fff}.mobile-toggle{display:flex}}
 @media (max-width:768px){
 .hero h1{margin-bottom:1rem}
@@ -327,7 +329,7 @@ footer a{color:var(--foot-link)}
 .mq-track span{color:var(--goldtx)}
 [data-theme="dark"] .sec-tag{color:#A79FFF}
 [data-theme="dark"] .area-city .time{color:#A79FFF}
-[data-theme="dark"] .contact-card a,[data-theme="dark"] #quoteSource{color:#A79FFF}
+[data-theme="dark"] .contact-card a:not(.contact-ico),[data-theme="dark"] #quoteSource{color:#A79FFF}
 [data-theme="dark"] #quoteCat{color:#7BD88F}
 .trust-row{display:flex;gap:1.4rem;flex-wrap:wrap;margin-top:1.6rem;font-size:.85rem;font-weight:800;color:var(--hero-sub)}
 .trust-row i{color:#34A853;font-style:normal;margin-left:.3rem}
@@ -595,19 +597,19 @@ footer a{color:var(--foot-link)}
   <h2 class="sec-title reveal">اتكلم معنا مباشرة — نرد عليك بسرعة</h2>
   <div class="contact-grid reveal">
     <div class="contact-card" style="--acc:#1877F2">
-      <div class="contact-ico"><svg viewBox="0 0 24 24" aria-hidden="true" style="fill:currentColor;stroke:none"><path d="M22 12.06C22 6.5 17.52 2 12 2S2 6.5 2 12.06c0 5.02 3.66 9.18 8.44 9.94v-7.03H7.9v-2.91h2.54V9.85c0-2.52 1.5-3.91 3.77-3.91 1.09 0 2.24.2 2.24.2v2.46h-1.26c-1.24 0-1.63.77-1.63 1.56v1.87h2.78l-.44 2.91h-2.34V22c4.78-.76 8.44-4.92 8.44-9.94Z"/></svg></div>
+      <a class="contact-ico" href="https://www.facebook.com/AmrSaidAI/" target="_blank" rel="noopener" aria-label="افتح صفحتنا على فيسبوك"><svg viewBox="0 0 24 24" aria-hidden="true" style="fill:currentColor;stroke:none"><path d="M22 12.06C22 6.5 17.52 2 12 2S2 6.5 2 12.06c0 5.02 3.66 9.18 8.44 9.94v-7.03H7.9v-2.91h2.54V9.85c0-2.52 1.5-3.91 3.77-3.91 1.09 0 2.24.2 2.24.2v2.46h-1.26c-1.24 0-1.63.77-1.63 1.56v1.87h2.78l-.44 2.91h-2.34V22c4.78-.76 8.44-4.92 8.44-9.94Z"/></svg></a>
       <h3>فيسبوك</h3>
       <p>تابعنا وابعتلنا على الصفحة</p>
       <a href="https://www.facebook.com/AmrSaidAI/" target="_blank" rel="noopener">facebook.com/AmrSaidAI</a>
     </div>
     <div class="contact-card" style="--acc:#25D366">
-      <div class="contact-ico"><svg viewBox="0 0 24 24" aria-hidden="true" style="fill:currentColor;stroke:none"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51a12.8 12.8 0 0 0-.57-.01c-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413Z"/></svg></div>
+      <a class="contact-ico" href="https://wa.me/201019959117" target="_blank" rel="noopener" aria-label="تواصل معنا على واتساب"><svg viewBox="0 0 24 24" aria-hidden="true" style="fill:currentColor;stroke:none"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51a12.8 12.8 0 0 0-.57-.01c-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413Z"/></svg></a>
       <h3>واتساب</h3>
       <p>اقتراح، مشكلة، أو حتى طلب ميزة</p>
       <a href="https://wa.me/201019959117" target="_blank" rel="noopener">01019959117</a>
     </div>
     <div class="contact-card" style="--acc:#EA4335">
-      <div class="contact-ico"><svg viewBox="0 0 24 24" aria-hidden="true"><rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 6-10 7L2 6"/></svg></div>
+      <a class="contact-ico" href="mailto:amrsmka36@gmail.com" aria-label="أرسل لنا بريدًا إلكترونيًا"><svg viewBox="0 0 24 24" aria-hidden="true"><rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 6-10 7L2 6"/></svg></a>
       <h3>بريد إلكتروني</h3>
       <p>للمقترحات والشراكات</p>
       <a href="mailto:amrsmka36@gmail.com">amrsmka36@gmail.com</a>
