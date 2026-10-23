@@ -45,6 +45,72 @@
 ]}
 </script>
 <style>
+/* ── PRELOADER ── */
+#preloader{position:fixed;inset:0;z-index:9999;background:linear-gradient(180deg,#0E1020,#141736);display:grid;place-items:center;transition:opacity .5s .2s}
+#preloader.fade{opacity:0;pointer-events:none}
+.preload-logo{width:80px;height:80px;border-radius:20px;background:linear-gradient(135deg,var(--primary),var(--primary-dark));box-shadow:0 0 0 4px rgba(255,255,255,.1);display:grid;place-items:center;animation:floatSpin 2.4s ease-in-out infinite}
+.preload-logo img{width:40px}
+@keyframes floatSpin{0%,100%{transform:scale(1) rotate(0deg)}50%{transform:scale(1.08) rotate(6deg)}}
+.preload-bar{height:3px;border-radius:2px;background:rgba(255,255,255,.14);overflow:hidden;margin-top:2rem;width:180px}
+.preload-progress{height:100%;width:0%;background:linear-gradient(90deg,var(--primary),var(--accent));transition:width .6s ease}
+.preload-text{color:rgba(255,255,255,.45);font-size:.8rem;margin-top:1rem;font-family:'Cairo'}
+@media(prefers-reduced-motion:reduce){#preloader{display:none}}
+.rm #preloader{display:none}
+/* ── Parallax layers ── */
+.parallax{position:absolute;inset:0;pointer-events:none}
+.parallax .layer-1{position:absolute;top:10%;left:5%;font-size:3.8rem;opacity:.035}
+.parallax .layer-2{position:absolute;bottom:12%;right:8%;font-size:3rem;opacity:.04}
+.parallax .layer-3{position:absolute;top:55%;left:50%;font-size:2.6rem;opacity:.03}
+@media(max-width:1024px){.parallax .layer-1{font-size:2.4rem}.parallax .layer-2{font-size:1.8rem}.parallax .layer-3{font-size:1.6rem}}
+/* ── Interactive Calculator ── */
+.calc-ring{width:200px;height:200px;margin:1.2rem auto;border-radius:50%;display:grid;place-items:center;cursor:pointer;user-select:none;transition:transform .12s}
+.calc-ring:active{transform:scale(.96)}
+.calc-inner{width:164px;height:164px;border-radius:50%;background:#141736;display:grid;place-items:center;text-align:center;padding:0 1rem}
+.calc-inner b{font-size:2.2rem;color:#fff;line-height:1.1}
+.calc-inner small{color:#9AA2B8;font-size:.78rem}
+.calc-chip{font-size:.75rem;font-weight:800;padding:.3rem .9rem;border-radius:100px;background:rgba(255,255,255,.08);color:#C9CCEA}
+.calc-chip.on{background:linear-gradient(135deg,#34A853,#1E8E3E);color:#fff}
+/* ── Hover lift ── */
+.lift{transition:transform .3s cubic-bezier(.22,1,.36,1),box-shadow .3s}
+.lift:hover,.lift:focus-within{transform:translateY(-6px)}
+/* ── Calc layout ── */
+.calc-grid{display:grid;grid-template-columns:1fr 1fr;gap:1.4rem;max-width:920px;margin:2.2rem auto 0}
+.calc-card{background:var(--card,#141736);border-radius:22px;padding:1.6rem;border:1px solid rgba(255,255,255,.08);box-shadow:0 18px 50px rgba(0,0,0,.25)}
+.calc-note{display:inline-block;margin-top:.4rem;font-size:.8rem;color:#9AA2B8}
+.calc-field{margin-top:1rem}
+.calc-field label{display:flex;justify-content:space-between;font-size:.85rem;color:#C9CCEA;margin-bottom:.4rem}
+.calc-field label b{color:#7DE29A}
+.calc-field input[type=range]{width:100%;accent-color:#34A853}
+.calc-modes,.calc-speeds{display:flex;gap:.5rem;flex-wrap:wrap;margin:.9rem 0 .2rem}
+@media(max-width:720px){.calc-grid{grid-template-columns:1fr}}
+/* ── Micro-interactions: ripple + tilt polish ── */
+.btn,.calc-chip,.dchip{position:relative;overflow:hidden}
+.ripple{position:absolute;border-radius:50%;background:rgba(255,255,255,.45);transform:scale(0);animation:rippleAnim .65s ease-out forwards;pointer-events:none;z-index:0}
+@keyframes rippleAnim{to{transform:scale(3);opacity:0}}
+.rm .ripple{display:none}
+/* ── Scroll progress bar + shimmering gradient headline ── */
+#scrollBar{position:fixed;top:0;right:0;left:0;height:3px;z-index:200;background:linear-gradient(90deg,#34A853,#8B83FF,#FF6584);transform-origin:right center;transform:scaleX(0);transition:transform .1s linear;pointer-events:none}
+.rm #scrollBar{display:none}
+.hero h1 .grad{background-size:220% 100%;animation:gradShift 4.5s ease-in-out infinite}
+@keyframes gradShift{0%,100%{background-position:0% 50%}50%{background-position:100% 50%}}
+.rm .hero h1 .grad{animation:none}
+/* ── Interactive weekly stats demo ── */
+#stats .stats-card{max-width:920px;margin:2.4rem auto 0;background:#141736;border:1px solid rgba(255,255,255,.08);border-radius:22px;padding:1.6rem;box-shadow:0 18px 50px rgba(0,0,0,.3)}
+.stats-top{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:.7rem;margin-bottom:1.2rem}
+.stats-total{text-align:center}
+.stats-total b{display:block;font-size:1.55rem;color:#7BD88F;font-variant-numeric:tabular-nums;line-height:1.2}
+.stats-total small{color:#9AA2B8;font-size:.75rem}
+.stats-chips{display:flex;gap:.5rem}
+.stats-bars{display:flex;gap:.7rem;align-items:flex-end;height:230px;padding-top:34px}
+.sbar{position:relative;flex:1;height:100%;background:none;border:0;display:flex;flex-direction:column;justify-content:flex-end;align-items:center;gap:.45rem;padding:0;cursor:default}
+.sbar .fill{width:68%;max-width:46px;min-height:4%;border-radius:10px 10px 4px 4px;height:4%;background:linear-gradient(180deg,#8B83FF,#34A853);transition:height .9s cubic-bezier(.22,1,.36,1)}
+.sbar:hover .fill,.sbar:focus-visible .fill{filter:brightness(1.3)}
+.sbar span{color:#9AA2B8;font-size:.72rem}
+.sbar .tip{position:absolute;top:-26px;left:50%;transform:translateX(-50%);background:#0E1020;border:1px solid rgba(255,255,255,.18);color:#fff;font-size:.72rem;font-weight:800;padding:.12rem .5rem;border-radius:8px;opacity:0;transition:opacity .25s;pointer-events:none;white-space:nowrap}
+.sbar:hover .tip,.sbar:focus-visible .tip{opacity:1}
+.stats-bars.go .fill{height:var(--h)}
+.rm .sbar .fill{transition:none}
+@media(max-width:720px){.stats-bars{height:160px;gap:.35rem}.sbar .fill{max-width:30px}.sbar span{font-size:.6rem}}
 :root{
   --primary:#6C63FF; --primary-light:#8B83FF; --primary-dark:#4E4BC8;
   --accent:#FF6584; --success:#34A853; --warning:#FF9800; --error:#E5523F; --info:#00BCD4;
@@ -335,9 +401,17 @@ footer a{color:var(--foot-link)}
 .trust-row i{color:#34A853;font-style:normal;margin-left:.3rem}
 .trust-note{display:inline-block;margin-top:.8rem;font-size:.82rem;color:var(--muted);background:rgba(108,99,255,.08);border:1px dashed rgba(108,99,255,.45);padding:.35rem 1.1rem;border-radius:100px}
 </style>
-<noscript><style>.reveal{opacity:1!important;transform:none!important}</style></noscript>
+<noscript><style>.reveal{opacity:1!important;transform:none!important}#preloader{display:none!important}</style></noscript>
 </head>
 <body>
+<div id="scrollBar" aria-hidden="true"></div>
+<div id="preloader" aria-hidden="true">
+  <div style="display:grid;place-items:center;text-align:center">
+    <div class="preload-logo"><img src="images/icon.svg" alt=""></div>
+    <div class="preload-bar"><div class="preload-progress" id="preloadProgress"></div></div>
+    <div class="preload-text">لسانك رطب بذِكر الله… جاري تجهيز السبحة 📿</div>
+  </div>
+</div>
 
 <nav class="nav" id="nav">
   <a class="nav-logo" href="#top"><img src="images/icon.svg" alt="Pomodoro Pro — سبحة الذكر"> Pomodoro <span>Pro</span></a>
@@ -350,6 +424,7 @@ footer a{color:var(--foot-link)}
 </nav>
 
 <header class="hero" id="top">
+  <div class="parallax" aria-hidden="true"><span class="layer-1">📿</span><span class="layer-2">⏱️</span><span class="layer-3">✦</span></div>
   <div>
     <span class="hero-badge">📿 صُنع للذِّكر أولاً • 🆕 حاسبة الذكر والوقت تظهر من أول فتح • مجاني 100%</span>
     <h1>لسانك رطب بذِكر الله…<br><span class="grad">ووقتك محسوب</span> ⏱️</h1>
@@ -560,6 +635,64 @@ footer a{color:var(--foot-link)}
   </div>
 </section>
 
+<section id="calc" style="background:linear-gradient(180deg,#0E1020,#141736)">
+  <span class="sec-tag">🧮 حاسبة الذكر والوقت — نسخة تفاعلية</span>
+  <h2 class="sec-title reveal" style="color:#fff">قدّر وردك قبل ما تبدأ</h2>
+  <p class="sec-sub reveal" style="color:#9AA2B8">دي نفس الحاسبة اللي بتظهرلك من أول فتح للتطبيق: كم دقيقة تأخذ 500 استغفار؟ أو كم تكرار يناسب الوقت المتاح؟ جربها هنا مباشرة.</p>
+  <div class="calc-grid">
+    <div class="calc-card reveal">
+      <div class="calc-ring" id="calcRing" role="button" tabindex="0" aria-label="اضغط لقياس سرعتك الفعلية في التسبيح">
+        <div class="calc-inner"><b id="calcBig">≈ 8 د</b><small id="calcSub">500 تسبيحة • اضغط لقياس سرعتك</small></div>
+      </div>
+      <div style="text-align:center"><span class="calc-note" id="calcSpeedNote">سرعتك الحالية: 1 ثانية/تسبيحة</span></div>
+    </div>
+    <div class="calc-card reveal">
+      <div class="calc-modes" id="calcModes" style="margin-top:0">
+        <button class="calc-chip on" data-mode="reps">📈 من العدد → الوقت</button>
+        <button class="calc-chip" data-mode="time">⏱️ من الوقت → العدد</button>
+      </div>
+      <div class="calc-speeds" id="calcSpeeds">
+        <button class="calc-chip" data-speed="0.7">⚡ سريع · 0.7ث</button>
+        <button class="calc-chip on" data-speed="1">⚖️ متوسط · 1ث</button>
+        <button class="calc-chip" data-speed="1.5">🐢 متمهل · 1.5ث</button>
+      </div>
+      <div class="calc-field" id="calcRepsField">
+        <label><span>عدد التكرارات</span><b id="calcRepsOut">500 📿</b></label>
+        <input type="range" id="calcReps" min="10" max="10000" step="10" value="500" aria-label="عدد التكرارات">
+      </div>
+      <div class="calc-field" id="calcMinsField" style="display:none">
+        <label><span>الوقت المتاح (دقيقة)</span><b id="calcMinsOut">30 د</b></label>
+        <input type="range" id="calcMins" min="1" max="120" step="1" value="30" aria-label="الوقت المتاح بالدقائق">
+      </div>
+      <p class="calc-note" style="margin-top:.9rem">👆 اضغط الدائرة مرتين متتاليتين وقلبنا يقيس سرعتك الفعلية بالعدّ — زي ما بيحصل في التطبيق.</p>
+    </div>
+  </div>
+</section>
+
+<section id="stats" style="background:linear-gradient(180deg,#141736,#0E1020)">
+  <span class="sec-tag">📊 إحصائياتك — شكلها في التطبيق</span>
+  <h2 class="sec-title reveal" style="color:#fff">تكمل اسبوعك… وتفرح بأرقامك</h2>
+  <p class="sec-sub reveal" style="color:#9AA2B8">رسوم يومية وأسبوعية وشهرية لكل تسبيحاتك وجلسات بومودورو، وكل بياناتك محفوظة محلياً على جهازك. دي عينة من شكل الرسم داخل التطبيق — جرّب وشوف بنفسك.</p>
+  <div class="stats-card reveal">
+    <div class="stats-top">
+      <div class="stats-chips" id="statsChips">
+        <button class="calc-chip on" data-set="dhikr">📿 تسبيح</button>
+        <button class="calc-chip" data-set="focus">⏱️ دقائق تركيز</button>
+      </div>
+      <div class="stats-total"><b id="statsTotal">5,030</b><small>إجمالي الأسبوع</small></div>
+    </div>
+    <div class="stats-bars" id="statsBars" role="group" aria-label="رسم بياني لأسبوعك — بدّل بين تسبيح وتركيز">
+      <button class="sbar" tabindex="0"><span class="tip">450</span><i class="fill" style="--h:45%"></i><span>السبت</span></button>
+      <button class="sbar" tabindex="0"><span class="tip">1000</span><i class="fill" style="--h:100%"></i><span>الجمعة</span></button>
+      <button class="sbar" tabindex="0"><span class="tip">300</span><i class="fill" style="--h:30%"></i><span>الخميس</span></button>
+      <button class="sbar" tabindex="0"><span class="tip">750</span><i class="fill" style="--h:75%"></i><span>الأربعاء</span></button>
+      <button class="sbar" tabindex="0"><span class="tip">1000</span><i class="fill" style="--h:100%"></i><span>الثلاثاء</span></button>
+      <button class="sbar" tabindex="0"><span class="tip">640</span><i class="fill" style="--h:64%"></i><span>الاثنين</span></button>
+      <button class="sbar" tabindex="0"><span class="tip">890</span><i class="fill" style="--h:89%"></i><span>الأحد</span></button>
+    </div>
+  </div>
+</section>
+
 <section id="faq">
   <span class="sec-tag">❓ الأسئلة الشائعة</span>
   <h2 class="sec-title reveal">كل ما تريد معرفته</h2>
@@ -631,6 +764,14 @@ footer a{color:var(--foot-link)}
 if(!window.gsap)document.documentElement.classList.add('no-gsap');
 const nav=document.getElementById('nav'),menuBtn=document.getElementById('menuBtn'),navLinks=document.getElementById('navLinks');
 addEventListener('scroll',()=>nav.classList.toggle('scrolled',scrollY>40),{passive:true});
+/* scroll progress bar */
+const scrollBar=document.getElementById('scrollBar');
+function paintScrollBar(){
+  const h=document.documentElement;
+  const max=h.scrollHeight-innerHeight;
+  scrollBar&&(scrollBar.style.transform='scaleX('+(max>0?Math.min(scrollY/max,1):0)+')');
+}
+addEventListener('scroll',paintScrollBar,{passive:true});paintScrollBar();
 menuBtn.onclick=()=>navLinks.classList.toggle('open');
 navLinks.querySelectorAll('a').forEach(a=>a.onclick=()=>navLinks.classList.remove('open'));
 document.querySelectorAll('.faq-q').forEach(btn=>btn.onclick=()=>{
@@ -792,6 +933,184 @@ if(hero&&!window.RM&&matchMedia('(pointer:fine)').matches){
     };
 
     xhr.send();
+  });
+})();
+
+/* ── Preloader: smooth fake progress → fade out on load (max ~2.6s) ── */
+(function(){
+  var pre=document.getElementById('preloader'),bar=document.getElementById('preloadProgress');
+  if(!pre)return;
+  if(window.RM){pre.remove();return}
+  var p=0,done=false;
+  var tick=setInterval(function(){
+    p=Math.min(p+(p<70?6:3),92);
+    bar.style.width=p+'%';
+  },90);
+  function finish(){
+    if(done)return;done=true;
+    clearInterval(tick);bar.style.width='100%';
+    setTimeout(function(){pre.classList.add('fade');setTimeout(function(){pre.remove()},700)},250);
+  }
+  addEventListener('load',finish);
+  setTimeout(finish,2600);
+})();
+
+/* ── Hero parallax layers: scroll + slow mouse drift (pointer:fine only) ── */
+(function(){
+  if(window.RM)return;
+  var hero=document.querySelector('.hero'),l1=document.querySelector('.parallax .layer-1'),
+      l2=document.querySelector('.parallax .layer-2'),l3=document.querySelector('.parallax .layer-3');
+  if(!hero||!l1)return;
+  var mx=0,my=0,cx=0,cy=0,frame=null;
+  function paint(){
+    var y=Math.min(scrollY,900);
+    l1.style.transform='translateY('+(y*.18+cx*14)+'px) translateX('+(cy*10)+'px)';
+    l2.style.transform='translateY('+(y*.32-cx*18)+'px) translateX('+(-cy*14)+'px)';
+    l3.style.transform='translateY('+(y*.5+cx*22)+'px)';
+  }
+  addEventListener('scroll',function(){if(!frame){frame=requestAnimationFrame(function(){paint();frame=null})}},{passive:true});
+  if(matchMedia('(pointer:fine)').matches)hero.addEventListener('mousemove',function(e){
+    var r=hero.getBoundingClientRect();
+    cx=(e.clientX-r.left)/r.width-.5;cy=(e.clientY-r.top)/r.height-.5;
+    if(!frame){frame=requestAnimationFrame(function(){paint();frame=null})}
+  });
+})();
+
+/* ── حاسبة الذكر والوقت (mirrors the in-app calculator modes) ── */
+(function(){
+  var ring=document.getElementById('calcRing');if(!ring)return;
+  var big=document.getElementById('calcBig'),sub=document.getElementById('calcSub'),
+      note=document.getElementById('calcSpeedNote'),
+      repsIn=document.getElementById('calcReps'),minsIn=document.getElementById('calcMins'),
+      repsOutT=document.getElementById('calcRepsOut'),minsOutT=document.getElementById('calcMinsOut'),
+      repsField=document.getElementById('calcRepsField'),minsField=document.getElementById('calcMinsField'),
+      modes=document.getElementById('calcModes'),speeds=document.getElementById('calcSpeeds');
+  var mode='reps',reps=500,mins=30,speed=1,tapPrev=null;
+  function fmtDur(secs){
+    if(secs<60)return '≈ '+secs+' ث';
+    var m=Math.floor(secs/60),s=secs%60;
+    if(m<60)return '≈ '+m+' د'+(s?' و'+s+' ث':'');
+    return '≈ '+Math.floor(m/60)+' س '+(m%60)+' د';
+  }
+  function paint(){
+    if(mode==='reps'){
+      var secs=Math.round(reps*speed);
+      big.textContent=fmtDur(secs);
+      sub.textContent=reps+' تسبيحة'+(repsIn?' • اسحب لتغيير العدد':'');
+    }else{
+      var n=Math.max(1,Math.round(mins*60/speed));
+      big.textContent=n+'';
+      sub.textContent='في '+mins+' دقيقة متاحة';
+    }
+    note.textContent='سرعتك الحالية: '+speed+' ثانية/تسبيحة'+
+      (speeds.querySelector('.calc-chip.on')?'':' • مقاسة من عدّك ✅');
+  }
+  function setChipOn(container,btn){container.querySelectorAll('.calc-chip').forEach(function(c){c.classList.toggle('on',c===btn)})}
+  modes.querySelectorAll('.calc-chip').forEach(function(btn){btn.onclick=function(){
+    setChipOn(modes,btn);mode=btn.dataset.mode;
+    repsField.style.display=mode==='reps'?'':'none';
+    minsField.style.display=mode==='time'?'':'none';
+    paint();
+  }});
+  speeds.querySelectorAll('.calc-chip').forEach(function(btn){btn.onclick=function(){
+    setChipOn(speeds,btn);speed=+btn.dataset.speed;tapPrev=null;paint();
+  }});
+  if(repsIn)repsIn.oninput=function(){
+    reps=+repsIn.value;
+    repsOutT.textContent=reps+' 📿';
+    paint();
+  };
+  if(minsIn)minsIn.oninput=function(){
+    mins=+minsIn.value;
+    minsOutT.textContent=mins+' د';
+    paint();
+  };
+  function measure(){
+    var now=Date.now();
+    if(!tapPrev){
+      tapPrev=now;
+      sub.textContent='⏱ مستني لمسة تانية لقياس سرعتك…';
+      return;
+    }
+    var dt=(now-tapPrev)/1000;
+    tapPrev=null;
+    if(dt>=.35&&dt<=4){
+      speed=Math.round(dt*10)/10;
+      speeds.querySelectorAll('.calc-chip').forEach(function(c){c.classList.remove('on')});
+      ring.classList.remove('goal-pop');void ring.offsetWidth;ring.classList.add('goal-pop');
+      paint();
+    }else{
+      sub.textContent='لمسة بعيدة زيادة — دوس مرتين سريعتين 😄';
+    }
+  }
+  ring.addEventListener('click',measure);
+  ring.addEventListener('keydown',function(e){if(e.key==='Enter'||e.key===' '){e.preventDefault();measure()}});
+  paint();
+})();
+
+/* ── Interactive weekly stats (mirrors the in-app fl_chart views) ── */
+(function(){
+  var bars=document.getElementById('statsBars');if(!bars)return;
+  var DATA={dhikr:[450,1000,300,750,1000,640,890],focus:[25,75,50,100,150,50,125]};
+  var total=document.getElementById('statsTotal'),
+      chips=document.getElementById('statsChips'),
+      set='dhikr';
+  function paint(k){
+    var arr=DATA[k],max=Math.max.apply(null,arr);
+    bars.querySelectorAll('.sbar').forEach(function(b,i){
+      var v=arr[i];
+      b.querySelector('.fill').style.setProperty('--h',Math.max(6,Math.round(v/max*100))+'%');
+      b.querySelector('.tip').textContent=v;
+      b.querySelector('.fill').style.transitionDelay=(i*70)+'ms';
+    });
+    total.textContent=arr.reduce(function(a,b){return a+b},0).toLocaleString('ar-EG');
+  }
+  chips.querySelectorAll('.calc-chip').forEach(function(btn){btn.onclick=function(){
+    chips.querySelectorAll('.calc-chip').forEach(function(c){c.classList.toggle('on',c===btn)});
+    set=btn.dataset.set;paint(set);
+  }});
+  paint(set);
+  if('IntersectionObserver' in window){
+    var io=new IntersectionObserver(function(es){es.forEach(function(e){
+      if(e.isIntersecting){bars.classList.add('go');io.disconnect()}
+    })},{threshold:.35});
+    io.observe(bars);
+  }else{bars.classList.add('go')}
+  if(window.RM)bars.classList.add('go');
+})();
+
+/* ── Micro-interactions: 3D card tilt, button ripple, magnetic CTA ── */
+(function(){
+  if(window.RM||!matchMedia('(pointer:fine)').matches)return;
+  /* 3D tilt following the pointer */
+  document.querySelectorAll('.service-card,.area-city,.season-card').forEach(function(card){
+    card.addEventListener('mousemove',function(e){
+      var r=card.getBoundingClientRect(),x=(e.clientX-r.left)/r.width-.5,y=(e.clientY-r.top)/r.height-.5;
+      card.style.transition='transform .08s linear';
+      card.style.transform='perspective(900px) rotateX('+(-y*7).toFixed(2)+'deg) rotateY('+(x*9).toFixed(2)+'deg) translateY(-6px)';
+    });
+    card.addEventListener('mouseleave',function(){card.style.transform='';card.style.transition='';});
+  });
+  /* ripple pulse on taps */
+  document.querySelectorAll('.btn,.calc-chip,.dchip').forEach(function(b){
+    b.addEventListener('click',function(e){
+      var r=b.getBoundingClientRect(),d=Math.max(r.width,r.height);
+      var s=document.createElement('span');s.className='ripple';
+      s.style.width=s.style.height=d+'px';
+      s.style.left=(e.clientX-r.left-d/2)+'px';s.style.top=(e.clientY-r.top-d/2)+'px';
+      b.appendChild(s);setTimeout(function(){s.remove()},700);
+    });
+  });
+  /* magnetic pull on hero CTAs */
+  document.querySelectorAll('.hero-btns .btn').forEach(function(b){
+    b.addEventListener('mousemove',function(e){
+      var r=b.getBoundingClientRect(),x=(e.clientX-r.left-r.width/2)*.18,y=(e.clientY-r.top-r.height/2)*.3;
+      b.style.transition='transform .1s';
+      b.style.transform='translate('+x.toFixed(1)+'px,'+(y-2).toFixed(1)+'px)';
+    });
+    b.addEventListener('mouseleave',function(){
+      b.style.transform='';b.style.transition='transform .35s cubic-bezier(.22,1,.36,1)';
+    });
   });
 })();
 </script>
